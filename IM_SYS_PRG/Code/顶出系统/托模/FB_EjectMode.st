@@ -12,58 +12,58 @@
 *)
 FUNCTION_BLOCK FB_EjectMode
 VAR_IN_OUT
-    stEjectAxis: ST_AxisRefHyd;
+    stEjectAxis: ST_AxisRefHyd;   // 托模共享轴结构，内部复用的 `FB_Eject` 直接操作该轴
 END_VAR
 VAR_INPUT
-    bStart: BOOL;
-    bStop: BOOL;
-    bEStop: BOOL;
-    bReset: BOOL;
+    bStart: BOOL;                 // TRUE=启动组合托模模式
+    bStop: BOOL;                  // TRUE=正常停止当前组合流程
+    bEStop: BOOL;                 // TRUE=急停，立即撤销对子块的命令
+    bReset: BOOL;                 // TRUE=复位本块及内部 `FB_Eject`
     uiEjectMode: UINT;            // 1=定次 2=震动 3=停留
     uiEjectTimes: UINT;           // 定次/震动次数；震动模式下 0 表示持续循环
-    stEjectPara: ST_EjectPara;
-    bEjectInStop: BOOL;
-    bEjectOutStop: BOOL;
-    udiEjectElecRulerVal: UDINT;
+    stEjectPara: ST_EjectPara;    // 传给内部 `FB_Eject` 的托模工艺参数
+    bEjectInStop: BOOL;           // 托模进停止信号，直接透传给内部 `FB_Eject`
+    bEjectOutStop: BOOL;          // 托模退停止信号，直接透传给内部 `FB_Eject`
+    udiEjectElecRulerVal: UDINT;  // 托模电子尺反馈，直接透传给内部 `FB_Eject`
 END_VAR
 VAR_OUTPUT
-    bBusy: BOOL;
-    bDone: BOOL;
-    bAlarm: BOOL;
-    dwAlarmID: DWORD;
-    uiActHint: UINT;
-    uiActTime: UINT;
-    bEjectIned: BOOL;
-    bEjectOuted: BOOL;
-    uiPresCmd: UINT;
-    uiSpdCmd: UINT;
-    udiPosCmd: UDINT;
+    bBusy: BOOL;                  // TRUE=组合托模模式尚未完成
+    bDone: BOOL;                  // TRUE=组合托模模式完成
+    bAlarm: BOOL;                 // TRUE=本块或内部 `FB_Eject` 报警
+    dwAlarmID: DWORD;             // 组合块报警码，优先透传子块报警
+    uiActHint: UINT;              // 当前动作提示码，默认复用子块提示
+    uiActTime: UINT;              // 当前动作持续时间，默认复用子块计时
+    bEjectIned: BOOL;             // TRUE=内部托模进完成
+    bEjectOuted: BOOL;            // TRUE=内部托模退完成
+    uiPresCmd: UINT;              // 当前对子块输出的压力命令镜像
+    uiSpdCmd: UINT;               // 当前对子块输出的速度命令镜像
+    udiPosCmd: UDINT;             // 当前对子块输出的位置命令镜像
 END_VAR
 VAR
-    eState: E_EjectModeState := eState_Idle;
-    fbEject: FB_Eject;
+    eState: E_EjectModeState := eState_Idle; // 当前组合托模状态机状态
+    fbEject: FB_Eject;                       // 内部基础托模块实例，实际液压命令由它生成
 
     (* 发给内部 `FB_Eject` 的命令。 *)
-    bCmdStart: BOOL := FALSE;
-    bCmdReset: BOOL := FALSE;
-    uiCmdMode: UINT := 0;
+    bCmdStart: BOOL := FALSE;               // TRUE=本拍触发内部 `FB_Eject` 启动
+    bCmdReset: BOOL := FALSE;               // TRUE=本拍复位内部 `FB_Eject`
+    uiCmdMode: UINT := 0;                   // 发给内部 `FB_Eject` 的模式号，1=托进 2=托退
 
     (* 顺序控制变量。 *)
-    uiExecCount: UINT := 0;
-    uiSeqPhase: UINT := 0;
+    uiExecCount: UINT := 0;                 // 已完成的往返或震动次数
+    uiSeqPhase: UINT := 0;                  // 当前子流程相位：0复位前置 1托进 2退前复位 3托退
 
     (* 内部 `FB_Eject` 状态缓存。 *)
-    bSubBusy: BOOL := FALSE;
-    bSubDone: BOOL := FALSE;
-    bSubAlarm: BOOL := FALSE;
-    dwSubAlarmID: DWORD := 0;
-    uiSubActHint: UINT := 0;
-    uiSubActTime: UINT := 0;
-    bSubEjectIned: BOOL := FALSE;
-    bSubEjectOuted: BOOL := FALSE;
-    uiSubPresCmd: UINT := 0;
-    uiSubSpdCmd: UINT := 0;
-    udiSubPosCmd: UDINT := 0;
+    bSubBusy: BOOL := FALSE;                // 内部 `FB_Eject` Busy 状态缓存
+    bSubDone: BOOL := FALSE;                // 内部 `FB_Eject` Done 状态缓存
+    bSubAlarm: BOOL := FALSE;               // 内部 `FB_Eject` Alarm 状态缓存
+    dwSubAlarmID: DWORD := 0;               // 内部 `FB_Eject` 报警码缓存
+    uiSubActHint: UINT := 0;                // 内部 `FB_Eject` 当前动作提示缓存
+    uiSubActTime: UINT := 0;                // 内部 `FB_Eject` 当前动作时间缓存
+    bSubEjectIned: BOOL := FALSE;           // 内部 `FB_Eject` 托模进完成缓存
+    bSubEjectOuted: BOOL := FALSE;          // 内部 `FB_Eject` 托模退完成缓存
+    uiSubPresCmd: UINT := 0;                // 内部 `FB_Eject` 压力命令缓存
+    uiSubSpdCmd: UINT := 0;                 // 内部 `FB_Eject` 速度命令缓存
+    udiSubPosCmd: UDINT := 0;               // 内部 `FB_Eject` 位置命令缓存
 END_VAR
 
 (* 每个扫描周期先清空对子块的控制命令。 *)
@@ -71,6 +71,7 @@ bCmdStart := FALSE;
 bCmdReset := FALSE;
 uiCmdMode := 0;
 
+(* 复位优先级最高：本块回空闲，同时给内部子块打一拍复位。 *)
 IF bReset THEN
     eState := eState_Idle;
     bBusy := FALSE;
@@ -83,6 +84,7 @@ IF bReset THEN
     uiSeqPhase := 0;
     bCmdReset := TRUE;
 
+(* 急停直接转故障态，并强制复位子块，确保托模轴命令被撤销。 *)
 ELSIF bEStop THEN
     eState := eState_Error;
     bBusy := FALSE;
@@ -95,6 +97,7 @@ ELSIF bEStop THEN
     uiSeqPhase := 0;
     bCmdReset := TRUE;
 
+(* 正常停止直接回空闲，同样复位子块，避免保留上一个动作的完成态。 *)
 ELSIF bStop THEN
     eState := eState_Idle;
     bBusy := FALSE;
@@ -109,6 +112,7 @@ ELSIF bStop THEN
 
 ELSE
     CASE eState OF
+        (* 空闲态：等待启动，并按组合模式切入定次、震动或停留逻辑。 *)
         eState_Idle:
             bBusy := FALSE;
             uiActHint := 0;
@@ -132,6 +136,7 @@ ELSE
                 END_CASE;
             END_IF;
 
+        (* 定次托模态：按“托进 -> 托退”为一个完整循环，达到次数后结束。 *)
         eState_EjectCount:
             bBusy := TRUE;
 
@@ -139,6 +144,7 @@ ELSE
                 dwAlarmID := dwSubAlarmID;
                 eState := eState_Error;
             ELSE
+                (* `uiSeqPhase` 把一个往返拆成“复位子块、托进、再次复位、托退”四步。 *)
                 CASE uiSeqPhase OF
                     0:
                         (* 子块切换动作前先复位，避免沿用上一个动作的完成态。 *)
@@ -164,6 +170,7 @@ ELSE
                         bCmdStart := TRUE;
                         IF bSubDone THEN
                             uiExecCount := uiExecCount + 1;
+                            (* 定次模式下 `uiEjectTimes = 0` 仍按 1 次收口，避免无终点循环。 *)
                             IF uiExecCount >= SEL(uiEjectTimes = 0, uiEjectTimes, 1) THEN
                                 bBusy := FALSE;
                                 bDone := TRUE;
@@ -178,6 +185,7 @@ ELSE
                 END_CASE;
             END_IF;
 
+        (* 震动态：同样执行“托进 -> 托退”循环，但 `uiEjectTimes = 0` 表示持续循环。 *)
         eState_EjectVibra:
             bBusy := TRUE;
 
@@ -185,6 +193,7 @@ ELSE
                 dwAlarmID := dwSubAlarmID;
                 eState := eState_Error;
             ELSE
+                (* 相位定义与定次模式一致，只是结束条件不同。 *)
                 CASE uiSeqPhase OF
                     0:
                         bCmdReset := TRUE;
@@ -220,6 +229,7 @@ ELSE
                 END_CASE;
             END_IF;
 
+        (* 停留态：只执行一次托模进，完成后停在前进端。 *)
         eState_EjectHold:
             bBusy := TRUE;
 
@@ -227,6 +237,7 @@ ELSE
                 dwAlarmID := dwSubAlarmID;
                 eState := eState_Error;
             ELSE
+                (* 停留模式只需要“复位子块 -> 托进”两个步骤。 *)
                 CASE uiSeqPhase OF
                     0:
                         bCmdReset := TRUE;
@@ -246,6 +257,7 @@ ELSE
                 END_CASE;
             END_IF;
 
+        (* 故障态：统一复位子块，并保留报警信息给主控/HMI。 *)
         eState_Error:
             bBusy := FALSE;
             bDone := FALSE;
@@ -295,6 +307,7 @@ uiPresCmd := uiSubPresCmd;
 uiSpdCmd := uiSubSpdCmd;
 udiPosCmd := udiSubPosCmd;
 
+(* 未报警时优先显示子块动作提示，让外部看到当前托进/托退所在步骤。 *)
 IF (NOT bAlarm) AND (uiSubActHint <> 0) THEN
     uiActHint := uiSubActHint;
 END_IF;

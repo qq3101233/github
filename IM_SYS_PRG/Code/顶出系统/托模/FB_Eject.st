@@ -38,20 +38,22 @@ VAR_OUTPUT
     udiPosCmd: UDINT;                 // 位置命令输出
 END_VAR
 VAR
-    eState: E_EjectState := eState_Idle;
-    uiStageIndex: UINT := 0;
-    tPulse: TON;
-    udiElapsedMs: UDINT := 0;
-    bManualActive: BOOL := FALSE;
-    bInRequest: BOOL := FALSE;
-    bOutRequest: BOOL := FALSE;
-    stSegCmd: ST_EjectSeg;
+    eState: E_EjectState := eState_Idle; // 当前托模状态机状态
+    uiStageIndex: UINT := 0;             // 当前执行到的托模进/托模退段号
+    tPulse: TON;                         // 100ms 节拍定时器，用于累计动作时间
+    udiElapsedMs: UDINT := 0;            // 当前托模动作或保持段已运行时间，单位 ms
+    bManualActive: BOOL := FALSE;        // TRUE=当前按调试/手动逻辑执行
+    bInRequest: BOOL := FALSE;           // TRUE=当前请求方向为托模进
+    bOutRequest: BOOL := FALSE;          // TRUE=当前请求方向为托模退
+    stSegCmd: ST_EjectSeg;               // 当前生效的托模段命令缓存
 END_VAR
 
+(* 每拍先把模式号映射成统一的托进/托退/手动语义。 *)
 bManualActive := bManualMode OR (uiEjectMode = 6) OR (uiEjectMode = 7);
 bInRequest := (uiEjectMode = 1) OR (uiEjectMode = 6);
 bOutRequest := (uiEjectMode = 2) OR (uiEjectMode = 7);
 
+(* 复位优先级最高：清空完成态、段号、计时和输出命令。 *)
 IF bReset THEN
     eState := eState_Idle;
     bBusy := FALSE;
@@ -68,6 +70,7 @@ IF bReset THEN
     uiStageIndex := 0;
     udiElapsedMs := 0;
     tPulse(IN := FALSE, PT := T#100MS);
+(* 急停直接转故障态，立即撤销托模命令。 *)
 ELSIF bEStop THEN
     eState := eState_Error;
     bAlarm := TRUE;
@@ -77,6 +80,7 @@ ELSIF bEStop THEN
     uiSpdCmd := 0;
     udiPosCmd := 0;
     tPulse(IN := FALSE, PT := T#100MS);
+(* 正常停止按空闲态收口，等待重新启动。 *)
 ELSIF bStop THEN
     eState := eState_Idle;
     bBusy := FALSE;
@@ -88,6 +92,7 @@ ELSIF bStop THEN
     tPulse(IN := FALSE, PT := T#100MS);
 ELSE
     CASE eState OF
+        (* 空闲态：等待启动，并根据请求方向进入托模进或托模退。 *)
         eState_Idle:
             bBusy := FALSE;
             bDone := FALSE;
@@ -116,6 +121,7 @@ ELSE
                 END_IF;
             END_IF;
 
+        (* 托模进执行态：自动模式按段推进，手动模式持续输出调试段。 *)
         eState_EjectIning:
             bBusy := TRUE;
             tPulse(IN := TRUE, PT := T#100MS);
@@ -125,6 +131,7 @@ ELSE
             END_IF;
             uiActTime := TO_UINT(udiElapsedMs / 1000);
 
+            (* 调试托模进优先使用调试段；未配置时回退到正式第一段。 *)
             IF bManualActive THEN
                 stSegCmd := stEjectPara.stEjectInDbgSeg;
                 IF (stSegCmd.uiPres = 0) AND (stSegCmd.uiSpd = 0) AND (stSegCmd.udiPos = 0) THEN
@@ -137,6 +144,7 @@ ELSE
                 IF NOT bStart THEN
                     eState := eState_Idle;
                 END_IF;
+            (* 自动托模进按段执行。所有前进段结束后，视配置决定是否进入托模保持。 *)
             ELSE
                 IF uiStageIndex > stEjectPara.uiEjectInSegCnt THEN
                     IF stEjectPara.stEjectKeepSeg.uiTime > 0 THEN
@@ -153,6 +161,10 @@ ELSE
                     uiSpdCmd := stSegCmd.uiSpd;
                     udiPosCmd := stSegCmd.udiPos;
 
+                    (* `uiEjectInMode` 约定：
+                       0=按段时间推进；
+                       1=按托模进停止信号推进；
+                       2=按电子尺位置推进。 *)
                     IF (stEjectPara.uiEjectInMode = 2) AND (udiEjectElecRulerVal >= stSegCmd.udiPos) THEN
                         uiStageIndex := uiStageIndex + 1;
                         udiElapsedMs := 0;
@@ -163,6 +175,7 @@ ELSE
                         tPulse(IN := FALSE, PT := T#100MS);
                     END_IF;
 
+                    (* 托模进总时长超限后直接报警。 *)
                     IF (stEjectPara.uiEjectInLimitTime > 0) AND (udiElapsedMs >= TO_UDINT(stEjectPara.uiEjectInLimitTime)) THEN
                         dwAlarmID := dwAlarmID OR DWORD#16#0001;
                         eState := eState_Error;
@@ -170,6 +183,7 @@ ELSE
                 END_IF;
             END_IF;
 
+        (* 托模进完成态：对外发布“托模进完成”。 *)
         eState_EjectIned:
             bBusy := FALSE;
             bDone := TRUE;
@@ -179,6 +193,7 @@ ELSE
             uiSpdCmd := 0;
             udiPosCmd := 0;
 
+        (* 托模保持态：用独立保持段在当前位置维持压力/速度设定。 *)
         eState_EjectKeeping:
             bBusy := TRUE;
             uiActHint := 29;
@@ -191,11 +206,13 @@ ELSE
                 tPulse(IN := FALSE, PT := T#100MS);
             END_IF;
             uiActTime := TO_UINT(udiElapsedMs / 1000);
+            (* 保持时间到后转入“已保持”完成态；时间为 0 则本拍立即完成。 *)
             IF (stEjectPara.stEjectKeepSeg.uiTime = 0) OR (udiElapsedMs >= TO_UDINT(stEjectPara.stEjectKeepSeg.uiTime)) THEN
                 eState := eState_EjectKept;
                 tPulse(IN := FALSE, PT := T#100MS);
             END_IF;
 
+        (* 托模保持完成态：对外仍以“托模进完成”语义对接上层。 *)
         eState_EjectKept:
             bBusy := FALSE;
             bDone := TRUE;
@@ -205,6 +222,7 @@ ELSE
             uiSpdCmd := 0;
             udiPosCmd := 0;
 
+        (* 托模退执行态：自动模式按段推进，手动模式持续输出调试段。 *)
         eState_EjectOuting:
             bBusy := TRUE;
             tPulse(IN := TRUE, PT := T#100MS);
@@ -214,6 +232,7 @@ ELSE
             END_IF;
             uiActTime := TO_UINT(udiElapsedMs / 1000);
 
+            (* 调试托模退优先使用调试段；未配置时回退到正式第一段。 *)
             IF bManualActive THEN
                 stSegCmd := stEjectPara.stEjectOutDbgSeg;
                 IF (stSegCmd.uiPres = 0) AND (stSegCmd.uiSpd = 0) AND (stSegCmd.udiPos = 0) THEN
@@ -226,6 +245,7 @@ ELSE
                 IF NOT bStart THEN
                     eState := eState_Idle;
                 END_IF;
+            (* 自动托模退按段执行，完成条件支持位置、停止信号或时间。 *)
             ELSE
                 IF uiStageIndex > stEjectPara.uiEjectOutSegCnt THEN
                     eState := eState_EjectOuted;
@@ -236,6 +256,10 @@ ELSE
                     uiSpdCmd := stSegCmd.uiSpd;
                     udiPosCmd := stSegCmd.udiPos;
 
+                    (* `uiEjectOutMode` 约定：
+                       0=按段时间推进；
+                       1=按托模退停止信号推进；
+                       2=按电子尺位置推进。 *)
                     IF (stEjectPara.uiEjectOutMode = 2) AND (udiEjectElecRulerVal >= stSegCmd.udiPos) THEN
                         uiStageIndex := uiStageIndex + 1;
                         udiElapsedMs := 0;
@@ -246,6 +270,7 @@ ELSE
                         tPulse(IN := FALSE, PT := T#100MS);
                     END_IF;
 
+                    (* 托模退总时长超限时直接报警。 *)
                     IF (stEjectPara.uiEjectOutLimitTime > 0) AND (udiElapsedMs >= TO_UDINT(stEjectPara.uiEjectOutLimitTime)) THEN
                         dwAlarmID := dwAlarmID OR DWORD#16#0002;
                         eState := eState_Error;
@@ -253,6 +278,7 @@ ELSE
                 END_IF;
             END_IF;
 
+        (* 托模退完成态：置位托模退完成标志。 *)
         eState_EjectOuted:
             bBusy := FALSE;
             bDone := TRUE;
@@ -262,6 +288,7 @@ ELSE
             uiSpdCmd := 0;
             udiPosCmd := 0;
 
+        (* 故障态：统一撤销托模输出，仅保留报警。 *)
         eState_Error:
             bBusy := FALSE;
             bAlarm := TRUE;
@@ -276,6 +303,7 @@ ELSE
     END_CASE;
 END_IF;
 
+(* 将当前托模命令回写到共享轴结构，由轴层功能块完成最终执行。 *)
 stEjectAxis.rSetPressure := TO_LREAL(uiPresCmd);
 stEjectAxis.rSetVelocity := TO_LREAL(uiSpdCmd);
 stEjectAxis.rSetPosition := TO_LREAL(udiPosCmd);

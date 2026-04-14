@@ -36,12 +36,13 @@ VAR_OUTPUT
     udiPosCmd: UDINT;                 // 位置命令输出
 END_VAR
 VAR
-    eState: E_MeterState := eState_Idle;
-    uiStageIndex: UINT := 0;
-    tPulse: TON;
-    udiElapsedMs: UDINT := 0;
+    eState: E_MeterState := eState_Idle; // 当前储料状态机状态
+    uiStageIndex: UINT := 0;             // 当前执行到的储料段号
+    tPulse: TON;                         // 100ms 节拍定时器，用于累计储料时间
+    udiElapsedMs: UDINT := 0;            // 当前储料动作已运行时间，单位 ms
 END_VAR
 
+(* 复位时清空储料状态、输出命令和计时缓存。 *)
 IF bReset THEN
     eState := eState_Idle;
     bBusy := FALSE;
@@ -58,6 +59,7 @@ IF bReset THEN
     uiStageIndex := 0;
     udiElapsedMs := 0;
     tPulse(IN := FALSE, PT := T#100MS);
+(* 急停直接打入故障态，避免储料继续运动。 *)
 ELSIF bEStop THEN
     eState := eState_Error;
     bAlarm := TRUE;
@@ -68,6 +70,7 @@ ELSIF bEStop THEN
     uiSpdCmd := 0;
     udiPosCmd := 0;
     tPulse(IN := FALSE, PT := T#100MS);
+(* 正常停止按空闲态收口，等待下次重新启动。 *)
 ELSIF bStop THEN
     eState := eState_Idle;
     bBusy := FALSE;
@@ -80,6 +83,7 @@ ELSIF bStop THEN
     tPulse(IN := FALSE, PT := T#100MS);
 ELSE
     CASE eState OF
+        (* 空闲态：等待启动，并在启动时清零完成/报警状态。 *)
         eState_Idle:
             bBusy := FALSE;
             uiActHint := 0;
@@ -100,6 +104,7 @@ ELSE
                 eState := eState_Metering;
             END_IF;
 
+        (* 储料执行态：手动模式持续输出第一段，自动模式按段推进。 *)
         eState_Metering:
             bBusy := TRUE;
             tPulse(IN := TRUE, PT := T#100MS);
@@ -109,6 +114,7 @@ ELSE
             END_IF;
             uiActTime := TO_UINT(udiElapsedMs / 1000);
 
+            (* 手动储料使用第一段参数持续点动，直到启动信号释放。 *)
             IF bManualMode THEN
                 uiActHint := 66;
                 uiPresCmd := stMeterPara.aMeterSeg[1].uiSPres;
@@ -118,6 +124,7 @@ ELSE
                 IF NOT bStart THEN
                     eState := eState_Idle;
                 END_IF;
+            (* 自动储料按段执行；每段完成条件由位置或储料停止信号决定。 *)
             ELSE
                 IF uiStageIndex > stMeterPara.uiMeterSegCnt THEN
                     eState := eState_Metered;
@@ -128,12 +135,16 @@ ELSE
                     uiSpdCmd := stMeterPara.aMeterSeg[uiStageIndex].uiSpd;
                     udiPosCmd := stMeterPara.aMeterSeg[uiStageIndex].udiPos;
 
+                    (* `uiMeterMode` 约定：
+                       0=按电子尺位置推进；
+                       非 0=按储料停止信号推进。 *)
                     IF (stMeterPara.uiMeterMode = 0) AND (udiInjElecRulerVal >= stMeterPara.aMeterSeg[uiStageIndex].udiPos) THEN
                         uiStageIndex := uiStageIndex + 1;
                     ELSIF (stMeterPara.uiMeterMode <> 0) AND bMeterStop THEN
                         uiStageIndex := uiStageIndex + 1;
                     END_IF;
 
+                    (* 储料总时长超限后直接报警，防止长时间背压运行。 *)
                     IF (stMeterPara.uiMeterLimitTime > 0) AND (udiElapsedMs >= TO_UDINT(stMeterPara.uiMeterLimitTime)) THEN
                         dwAlarmID := dwAlarmID OR DWORD#16#0001;
                         eState := eState_Error;
@@ -141,6 +152,7 @@ ELSE
                 END_IF;
             END_IF;
 
+        (* 储料完成态：置位完成标志，并撤销对轴的输出命令。 *)
         eState_Metered:
             bBusy := FALSE;
             bDone := TRUE;
@@ -151,6 +163,7 @@ ELSE
             uiSpdCmd := 0;
             udiPosCmd := 0;
 
+        (* 故障态：只保留报警状态，所有动作命令归零。 *)
         eState_Error:
             bBusy := FALSE;
             bAlarm := TRUE;
@@ -166,6 +179,8 @@ ELSE
     END_CASE;
 END_IF;
 
+(* 当前轴接口没有独立背压设定字段，因此这里只把压力/速度/位置回写到共享轴结构；
+   `uiBackPresCmd` 仍保留在功能块输出，供主控或后续扩展读取。 *)
 stMeterAxis.rSetPressure := TO_LREAL(uiPresCmd);
 stMeterAxis.rSetVelocity := TO_LREAL(uiSpdCmd);
 stMeterAxis.rSetPosition := TO_LREAL(udiPosCmd);
