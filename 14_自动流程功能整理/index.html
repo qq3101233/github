@@ -1,39 +1,36 @@
 
 <!DOCTYPE html>
 
-<html class="no-js" lang="zh">
+<html class="no-js" lang="en">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<meta content="Procheson立式机功能模块技术文档" name="description"/>
-<link href="https://docs.procheson.com/14_%E8%87%AA%E5%8A%A8%E6%B5%81%E7%A8%8B%E5%8A%9F%E8%83%BD%E6%95%B4%E7%90%86/" rel="canonical"/>
+<link href="https://qq3101233.github.io/github/14_%E8%87%AA%E5%8A%A8%E6%B5%81%E7%A8%8B%E5%8A%9F%E8%83%BD%E6%95%B4%E7%90%86/" rel="canonical"/>
 <link href="../13_%E6%B8%A9%E5%BA%A6%E5%8A%9F%E8%83%BD%E6%95%B4%E7%90%86/" rel="prev"/>
 <link href="../15_%E6%B5%81%E7%A8%8B%E5%9B%BE/" rel="next"/>
 <link href="../assets/images/favicon.png" rel="icon"/>
 <meta content="mkdocs-1.6.1, mkdocs-material-9.7.6" name="generator"/>
-<title>自动流程功能 - Procheson立式机功能整理文档</title>
+<title>注塑机自动流程功能整理文档 - 宝捷信立式注塑机</title>
 <link href="../assets/stylesheets/main.484c7ddc.min.css" rel="stylesheet"/>
-<link href="../assets/stylesheets/palette.ab4e12ef.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
 <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
-<link href="../styles.css" rel="stylesheet"/>
 <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
 </head>
-<body data-md-color-accent="teal" data-md-color-primary="indigo" data-md-color-scheme="default" dir="ltr">
+<body dir="ltr">
 <input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
 <a class="md-skip" href="#_1">
-          跳转至
+          Skip to content
         </a>
 </div>
 <div data-md-component="announce">
 </div>
 <header class="md-header" data-md-component="header">
-<nav aria-label="页眉" class="md-header__inner md-grid">
-<a aria-label="Procheson立式机功能整理文档" class="md-header__button md-logo" data-md-component="logo" href=".." title="Procheson立式机功能整理文档">
+<nav aria-label="Header" class="md-header__inner md-grid">
+<a aria-label="宝捷信立式注塑机" class="md-header__button md-logo" data-md-component="logo" href=".." title="宝捷信立式注塑机">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
 </a>
 <label class="md-header__button md-icon" for="__drawer">
@@ -43,18 +40,19 @@
 <div class="md-header__ellipsis">
 <div class="md-header__topic">
 <span class="md-ellipsis">
-            Procheson立式机功能整理文档
+            宝捷信立式注塑机
           </span>
 </div>
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              自动流程功能
+              注塑机自动流程功能整理文档
             
           </span>
 </div>
 </div>
 </div>
+<script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
 <label class="md-header__button md-icon" for="__search">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
 </label>
@@ -62,13 +60,13 @@
 <label class="md-search__overlay" for="__search"></label>
 <div class="md-search__inner" role="search">
 <form class="md-search__form" name="search">
-<input aria-label="搜索" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" name="query" placeholder="搜索" required="" spellcheck="false" type="text"/>
+<input aria-label="Search" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" name="query" placeholder="Search" required="" spellcheck="false" type="text"/>
 <label class="md-search__icon md-icon" for="__search">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
 </label>
-<nav aria-label="查找" class="md-search__options">
-<button aria-label="清空当前内容" class="md-search__icon md-icon" tabindex="-1" title="清空当前内容" type="reset">
+<nav aria-label="Search" class="md-search__options">
+<button aria-label="Clear" class="md-search__icon md-icon" tabindex="-1" title="Clear" type="reset">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
 </button>
 </nav>
@@ -78,7 +76,7 @@
 <div class="md-search__scrollwrap" data-md-scrollfix="" tabindex="0">
 <div class="md-search-result" data-md-component="search-result">
 <div class="md-search-result__meta">
-            正在初始化搜索引擎
+            Initializing search
           </div>
 <ol class="md-search-result__list" role="presentation"></ol>
 </div>
@@ -89,9 +87,20 @@
 </nav>
 </header>
 <div class="md-container" data-md-component="container">
-<nav aria-label="标签" class="md-tabs" data-md-component="tabs">
+<nav aria-label="Tabs" class="md-tabs" data-md-component="tabs">
 <div class="md-grid">
 <ul class="md-tabs__list">
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="..">
+        
+  
+  
+    
+  
+  宝捷信立式注塑机
+
+      </a>
+</li>
 <li class="md-tabs__item">
 <a class="md-tabs__link" href="../01_%E5%BC%80%E5%90%88%E6%A8%A1%E5%8A%9F%E8%83%BD%E6%95%B4%E7%90%86/">
         
@@ -99,7 +108,7 @@
   
     
   
-  开合模功能
+  注塑机开合模功能
 
       </a>
 </li>
@@ -110,7 +119,7 @@
   
     
   
-  调模功能
+  注塑机调模功能整理文档
 
       </a>
 </li>
@@ -121,7 +130,7 @@
   
     
   
-  射出功能
+  注塑机射出功能
 
       </a>
 </li>
@@ -132,7 +141,7 @@
   
     
   
-  吹气功能
+  注塑机吹气功能
 
       </a>
 </li>
@@ -143,7 +152,7 @@
   
     
   
-  储料清料功能
+  注塑机储料/清料功能
 
       </a>
 </li>
@@ -154,7 +163,7 @@
   
     
   
-  座台功能
+  注塑机座台功能技术文档
 
       </a>
 </li>
@@ -165,7 +174,7 @@
   
     
   
-  托模功能
+  注塑机托模功能技术文档
 
       </a>
 </li>
@@ -176,7 +185,7 @@
   
     
   
-  移模功能
+  移模功能整理文档
 
       </a>
 </li>
@@ -187,7 +196,7 @@
   
     
   
-  转盘功能
+  转盘功能整理文档
 
       </a>
 </li>
@@ -198,7 +207,7 @@
   
     
   
-  中子功能
+  注塑机中子功能技术文档
 
       </a>
 </li>
@@ -209,7 +218,7 @@
   
     
   
-  绞牙功能
+  注塑机绞牙功能技术文档
 
       </a>
 </li>
@@ -220,7 +229,7 @@
   
     
   
-  计时计数功能
+  注塑机计时/计数功能整理文档
 
       </a>
 </li>
@@ -231,7 +240,7 @@
   
     
   
-  温度功能
+  注塑机温度功能
 
       </a>
 </li>
@@ -242,7 +251,7 @@
   
     
   
-  自动流程功能
+  注塑机自动流程功能整理文档
 
       </a>
 </li>
@@ -253,7 +262,7 @@
   
     
   
-  流程图
+  15 流程图
 
       </a>
 </li>
@@ -264,18 +273,9 @@
   
     
   
-  动作提示列表
+  注塑机动作提示列表
 
       </a>
-</li>
-<li class="md-tabs__item">
-<a class="md-tabs__link" href="../%E5%9C%B0%E5%9D%80%E7%82%B9%E8%A1%A8_Sheet1/">
-          
-  
-  
-  地址点表
-
-        </a>
 </li>
 <li class="md-tabs__item">
 <a class="md-tabs__link" href="../%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83/">
@@ -284,9 +284,84 @@
   
     
   
-  命名规范文档
+  注塑机控制系统命名规范
 
       </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../%E5%9C%B0%E5%9D%80%E7%82%B9%E8%A1%A8_D0/">
+        
+  
+  
+    
+  
+  地址点表 - D0
+
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../%E5%9C%B0%E5%9D%80%E7%82%B9%E8%A1%A8_D1/">
+        
+  
+  
+    
+  
+  地址点表 - D1
+
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../%E5%9C%B0%E5%9D%80%E7%82%B9%E8%A1%A8_D2/">
+        
+  
+  
+    
+  
+  地址点表 - D2
+
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../%E5%9C%B0%E5%9D%80%E7%82%B9%E8%A1%A8_D3/">
+        
+  
+  
+    
+  
+  地址点表 - D3
+
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../%E5%9C%B0%E5%9D%80%E7%82%B9%E8%A1%A8_MD/">
+        
+  
+  
+    
+  
+  地址点表 - MD
+
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../%E5%9C%B0%E5%9D%80%E7%82%B9%E8%A1%A8_Sheet1/">
+        
+  
+  
+    
+  
+  地址点表 - Sheet1
+
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../%E4%BC%9A%E8%AE%AE%E8%AE%B0%E5%BD%95/20260318%E5%BC%80%E5%90%88%E6%A8%A1%E5%8A%9F%E8%83%BD%E5%9D%97%E5%8F%82%E6%95%B0%E8%AE%BE%E8%AE%A1%E4%B8%8E%E4%B8%AD%E5%AD%90%E8%BF%9B%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0%E8%AE%A8%E8%AE%BA/">
+          
+  
+  
+  会议记录
+
+        </a>
 </li>
 </ul>
 </div>
@@ -296,20 +371,32 @@
 <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
 <div class="md-sidebar__scrollwrap">
 <div class="md-sidebar__inner">
-<nav aria-label="导航栏" class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" data-md-level="0">
+<nav aria-label="Navigation" class="md-nav md-nav--primary md-nav--lifted" data-md-level="0">
 <label class="md-nav__title" for="__drawer">
-<a aria-label="Procheson立式机功能整理文档" class="md-nav__button md-logo" data-md-component="logo" href=".." title="Procheson立式机功能整理文档">
+<a aria-label="宝捷信立式注塑机" class="md-nav__button md-logo" data-md-component="logo" href=".." title="宝捷信立式注塑机">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
 </a>
-    Procheson立式机功能整理文档
+    宝捷信立式注塑机
   </label>
 <ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="..">
+<span class="md-ellipsis">
+    
+  
+    宝捷信立式注塑机
+  
+
+    
+  </span>
+</a>
+</li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../01_%E5%BC%80%E5%90%88%E6%A8%A1%E5%8A%9F%E8%83%BD%E6%95%B4%E7%90%86/">
 <span class="md-ellipsis">
     
   
-    开合模功能
+    注塑机开合模功能
   
 
     
@@ -321,7 +408,7 @@
 <span class="md-ellipsis">
     
   
-    调模功能
+    注塑机调模功能整理文档
   
 
     
@@ -333,7 +420,7 @@
 <span class="md-ellipsis">
     
   
-    射出功能
+    注塑机射出功能
   
 
     
@@ -345,7 +432,7 @@
 <span class="md-ellipsis">
     
   
-    吹气功能
+    注塑机吹气功能
   
 
     
@@ -357,7 +444,7 @@
 <span class="md-ellipsis">
     
   
-    储料清料功能
+    注塑机储料/清料功能
   
 
     
@@ -369,7 +456,7 @@
 <span class="md-ellipsis">
     
   
-    座台功能
+    注塑机座台功能技术文档
   
 
     
@@ -381,7 +468,7 @@
 <span class="md-ellipsis">
     
   
-    托模功能
+    注塑机托模功能技术文档
   
 
     
@@ -393,7 +480,7 @@
 <span class="md-ellipsis">
     
   
-    移模功能
+    移模功能整理文档
   
 
     
@@ -405,7 +492,7 @@
 <span class="md-ellipsis">
     
   
-    转盘功能
+    转盘功能整理文档
   
 
     
@@ -417,7 +504,7 @@
 <span class="md-ellipsis">
     
   
-    中子功能
+    注塑机中子功能技术文档
   
 
     
@@ -429,7 +516,7 @@
 <span class="md-ellipsis">
     
   
-    绞牙功能
+    注塑机绞牙功能技术文档
   
 
     
@@ -441,7 +528,7 @@
 <span class="md-ellipsis">
     
   
-    计时计数功能
+    注塑机计时/计数功能整理文档
   
 
     
@@ -453,7 +540,7 @@
 <span class="md-ellipsis">
     
   
-    温度功能
+    注塑机温度功能
   
 
     
@@ -466,7 +553,7 @@
 <span class="md-ellipsis">
     
   
-    自动流程功能
+    注塑机自动流程功能整理文档
   
 
     
@@ -477,16 +564,16 @@
 <span class="md-ellipsis">
     
   
-    自动流程功能
+    注塑机自动流程功能整理文档
   
 
     
   </span>
 </a>
-<nav aria-label="目录" class="md-nav md-nav--secondary">
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
 <label class="md-nav__title" for="__toc">
 <span class="md-nav__icon md-icon"></span>
-      目录
+      Table of contents
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
@@ -675,7 +762,7 @@
 <span class="md-ellipsis">
     
   
-    流程图
+    15 流程图
   
 
     
@@ -687,42 +774,19 @@
 <span class="md-ellipsis">
     
   
-    动作提示列表
+    注塑机动作提示列表
   
 
     
   </span>
 </a>
 </li>
-<li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" id="__nav_17" type="checkbox"/>
-<label class="md-nav__link" for="__nav_17" id="__nav_17_label" tabindex="0">
-<span class="md-ellipsis">
-    
-  
-    地址点表
-  
-
-    
-  </span>
-<span class="md-nav__icon md-icon"></span>
-</label>
-<nav aria-expanded="false" aria-labelledby="__nav_17_label" class="md-nav" data-md-level="1">
-<label class="md-nav__title" for="__nav_17">
-<span class="md-nav__icon md-icon"></span>
-            
-  
-    地址点表
-  
-
-          </label>
-<ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../%E5%9C%B0%E5%9D%80%E7%82%B9%E8%A1%A8_Sheet1/">
+<a class="md-nav__link" href="../%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83/">
 <span class="md-ellipsis">
     
   
-    主表
+    注塑机控制系统命名规范
   
 
     
@@ -734,7 +798,7 @@
 <span class="md-ellipsis">
     
   
-    D0工作表
+    地址点表 - D0
   
 
     
@@ -746,7 +810,7 @@
 <span class="md-ellipsis">
     
   
-    D1工作表
+    地址点表 - D1
   
 
     
@@ -758,7 +822,7 @@
 <span class="md-ellipsis">
     
   
-    D2工作表
+    地址点表 - D2
   
 
     
@@ -770,7 +834,7 @@
 <span class="md-ellipsis">
     
   
-    D3工作表
+    地址点表 - D3
   
 
     
@@ -782,7 +846,90 @@
 <span class="md-ellipsis">
     
   
-    MD工作表
+    地址点表 - MD
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../%E5%9C%B0%E5%9D%80%E7%82%B9%E8%A1%A8_Sheet1/">
+<span class="md-ellipsis">
+    
+  
+    地址点表 - Sheet1
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_25" type="checkbox"/>
+<label class="md-nav__link" for="__nav_25" id="__nav_25_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    会议记录
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_25_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_25">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    会议记录
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../%E4%BC%9A%E8%AE%AE%E8%AE%B0%E5%BD%95/20260318%E5%BC%80%E5%90%88%E6%A8%A1%E5%8A%9F%E8%83%BD%E5%9D%97%E5%8F%82%E6%95%B0%E8%AE%BE%E8%AE%A1%E4%B8%8E%E4%B8%AD%E5%AD%90%E8%BF%9B%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0%E8%AE%A8%E8%AE%BA/">
+<span class="md-ellipsis">
+    
+  
+    会议记录：开合模功能块参数设计与中子进功能实现讨论
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../%E4%BC%9A%E8%AE%AE%E8%AE%B0%E5%BD%95/20260327%E5%B0%84%E5%87%BA%E5%8A%9F%E8%83%BD%E5%9D%97%E5%8F%82%E6%95%B0%E8%AE%A8%E8%AE%BA/">
+<span class="md-ellipsis">
+    
+  
+    会议记录：托模/射出功能块参数讨论
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../%E4%BC%9A%E8%AE%AE%E8%AE%B0%E5%BD%95/20260410%E6%B3%A8%E5%A1%91%E6%9C%BA%E6%B6%B2%E5%8E%8B%E8%BF%90%E5%8A%A8%E6%8E%A7%E5%88%B6%E5%8A%9F%E8%83%BD%E5%BA%93%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF%E6%96%B9%E6%A1%88%E8%AE%A8%E8%AE%BA/">
+<span class="md-ellipsis">
+    
+  
+    会议记录：注塑机液压运动控制功能库开发技术方案讨论
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../%E4%BC%9A%E8%AE%AE%E8%AE%B0%E5%BD%95/20260413%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E8%AE%A1%E5%88%92%E4%B8%8E%E6%8E%A5%E5%8F%A3%E9%AA%8C%E8%AF%81%E6%96%B9%E6%B3%95%E8%AE%A8%E8%AE%BA/">
+<span class="md-ellipsis">
+    
+  
+    会议记录：项目开发计划与接口验证方法讨论
   
 
     
@@ -792,17 +939,197 @@
 </ul>
 </nav>
 </li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83/">
+<a class="md-nav__link" href="#_2">
 <span class="md-ellipsis">
-    
-  
-    命名规范文档
-  
-
-    
-  </span>
+      
+        文档信息
+      
+    </span>
 </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#1">
+<span class="md-ellipsis">
+      
+        1. 功能概述
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#2">
+<span class="md-ellipsis">
+      
+        2. 核心流程说明
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#3">
+<span class="md-ellipsis">
+      
+        3. 流程图
+      
+    </span>
+</a>
+<nav aria-label="3. 流程图" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#31">
+<span class="md-ellipsis">
+      
+        3.1 自动/半自动完整流程
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#32">
+<span class="md-ellipsis">
+      
+        3.2 错误处理说明
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#4">
+<span class="md-ellipsis">
+      
+        4. 流程详细说明
+      
+    </span>
+</a>
+<nav aria-label="4. 流程详细说明" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#41">
+<span class="md-ellipsis">
+      
+        4.1 启动条件
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#42">
+<span class="md-ellipsis">
+      
+        4.2 各步骤转换条件
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#43">
+<span class="md-ellipsis">
+      
+        4.3 模式区别
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#5">
+<span class="md-ellipsis">
+      
+        5. 相关参数
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#6">
+<span class="md-ellipsis">
+      
+        6. 储料过程详细说明
+      
+    </span>
+</a>
+<nav aria-label="6. 储料过程详细说明" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#61">
+<span class="md-ellipsis">
+      
+        6.1 储料流程概述
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#62">
+<span class="md-ellipsis">
+      
+        6.2 各阶段阀门输出逻辑
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#63">
+<span class="md-ellipsis">
+      
+        6.3 控制逻辑实现
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#7">
+<span class="md-ellipsis">
+      
+        7. 射退功能说明
+      
+    </span>
+</a>
+<nav aria-label="7. 射退功能说明" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#71">
+<span class="md-ellipsis">
+      
+        7.1 手动射退控制
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#72">
+<span class="md-ellipsis">
+      
+        7.2 自动射退控制
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
 </li>
 </ul>
 </nav>
@@ -1156,21 +1483,19 @@
 </div>
 <button class="md-top md-icon" data-md-component="top" hidden="" type="button">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
-  回到页面顶部
+  Back to top
 </button>
 </main>
 <footer class="md-footer">
 <div class="md-footer-meta md-typeset">
 <div class="md-footer-meta__inner md-grid">
 <div class="md-copyright">
-
-    技术支持电话：13971612060
-
-</div>
-<!-- 本地评论系统 -->
-<div class="comments-section">
-<h3 style="margin-top: 2rem; margin-bottom: 1rem;">评论区</h3>
-<iframe frameborder="0" height="600px" src="../comments.html" style="border: 1px solid #eaecef; border-radius: 8px;" width="100%"></iframe>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
+      Material for MkDocs
+    </a>
 </div>
 </div>
 </div>
@@ -1179,7 +1504,7 @@
 <div class="md-dialog" data-md-component="dialog">
 <div class="md-dialog__inner md-typeset"></div>
 </div>
-<script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.toc", "toc.integrate", "toc.follow", "navigation.top", "search.suggest", "search.highlight"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+<script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
 <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
 <script type="module">import mermaid from "https://unpkg.com/mermaid@10.4.0/dist/mermaid.esm.min.mjs";
 mermaid.initialize({});</script></body>
