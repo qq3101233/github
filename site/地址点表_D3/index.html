@@ -1,0 +1,3409 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../%E5%9C%B0%E5%9D%80%E7%82%B9%E8%A1%A8_D2/">
+      
+      
+        <link rel="next" href="../%E5%9C%B0%E5%9D%80%E7%82%B9%E8%A1%A8_MD/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>地址点表 - D3 - My Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#-d3" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="My Docs" class="md-header__button md-logo" aria-label="My Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            My Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              地址点表 - D3
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="My Docs" class="md-nav__button md-logo" aria-label="My Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    My Docs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    宝捷信立式注塑机
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_%E5%BC%80%E5%90%88%E6%A8%A1%E5%8A%9F%E8%83%BD%E6%95%B4%E7%90%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    注塑机开合模功能
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02_%E8%B0%83%E6%A8%A1%E5%8A%9F%E8%83%BD%E6%95%B4%E7%90%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    注塑机调模功能整理文档
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_%E5%B0%84%E5%87%BA%E5%8A%9F%E8%83%BD%E6%95%B4%E7%90%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    注塑机射出功能
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_%E5%90%B9%E6%B0%94%E5%8A%9F%E8%83%BD%E6%95%B4%E7%90%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    注塑机吹气功能
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05_%E5%82%A8%E6%96%99%E6%B8%85%E6%96%99%E5%8A%9F%E8%83%BD%E6%95%B4%E7%90%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    注塑机储料/清料功能
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06_%E5%BA%A7%E5%8F%B0%E5%8A%9F%E8%83%BD%E6%95%B4%E7%90%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    注塑机座台功能技术文档
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07_%E6%89%98%E6%A8%A1%E5%8A%9F%E8%83%BD%E6%95%B4%E7%90%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    注塑机托模功能技术文档
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08_%E7%A7%BB%E6%A8%A1%E5%8A%9F%E8%83%BD%E6%95%B4%E7%90%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    移模功能整理文档
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09_%E8%BD%AC%E7%9B%98%E5%8A%9F%E8%83%BD%E6%95%B4%E7%90%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    转盘功能整理文档
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10_%E4%B8%AD%E5%AD%90%E5%8A%9F%E8%83%BD%E6%95%B4%E7%90%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    注塑机中子功能技术文档
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11_%E7%BB%9E%E7%89%99%E5%8A%9F%E8%83%BD%E6%95%B4%E7%90%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    注塑机绞牙功能技术文档
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12_%E8%AE%A1%E6%97%B6%E8%AE%A1%E6%95%B0%E5%8A%9F%E8%83%BD%E6%95%B4%E7%90%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    注塑机计时/计数功能整理文档
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13_%E6%B8%A9%E5%BA%A6%E5%8A%9F%E8%83%BD%E6%95%B4%E7%90%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    注塑机温度功能
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14_%E8%87%AA%E5%8A%A8%E6%B5%81%E7%A8%8B%E5%8A%9F%E8%83%BD%E6%95%B4%E7%90%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    注塑机自动流程功能整理文档
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../15_%E6%B5%81%E7%A8%8B%E5%9B%BE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    15 流程图
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E5%8A%A8%E4%BD%9C%E6%8F%90%E7%A4%BA%E5%88%97%E8%A1%A8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    注塑机动作提示列表
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    注塑机控制系统命名规范
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E5%9C%B0%E5%9D%80%E7%82%B9%E8%A1%A8_D0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    地址点表 - D0
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E5%9C%B0%E5%9D%80%E7%82%B9%E8%A1%A8_D1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    地址点表 - D1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E5%9C%B0%E5%9D%80%E7%82%B9%E8%A1%A8_D2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    地址点表 - D2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    地址点表 - D3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E5%9C%B0%E5%9D%80%E7%82%B9%E8%A1%A8_MD/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    地址点表 - MD
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E5%9C%B0%E5%9D%80%E7%82%B9%E8%A1%A8_Sheet1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    地址点表 - Sheet1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_25" >
+        
+          
+          <label class="md-nav__link" for="__nav_25" id="__nav_25_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    会议记录
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_25_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_25">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    会议记录
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E4%BC%9A%E8%AE%AE%E8%AE%B0%E5%BD%95/20260318%E5%BC%80%E5%90%88%E6%A8%A1%E5%8A%9F%E8%83%BD%E5%9D%97%E5%8F%82%E6%95%B0%E8%AE%BE%E8%AE%A1%E4%B8%8E%E4%B8%AD%E5%AD%90%E8%BF%9B%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0%E8%AE%A8%E8%AE%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    会议记录：开合模功能块参数设计与中子进功能实现讨论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E4%BC%9A%E8%AE%AE%E8%AE%B0%E5%BD%95/20260327%E5%B0%84%E5%87%BA%E5%8A%9F%E8%83%BD%E5%9D%97%E5%8F%82%E6%95%B0%E8%AE%A8%E8%AE%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    会议记录：托模/射出功能块参数讨论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E4%BC%9A%E8%AE%AE%E8%AE%B0%E5%BD%95/20260410%E6%B3%A8%E5%A1%91%E6%9C%BA%E6%B6%B2%E5%8E%8B%E8%BF%90%E5%8A%A8%E6%8E%A7%E5%88%B6%E5%8A%9F%E8%83%BD%E5%BA%93%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF%E6%96%B9%E6%A1%88%E8%AE%A8%E8%AE%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    会议记录：注塑机液压运动控制功能库开发技术方案讨论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E4%BC%9A%E8%AE%AE%E8%AE%B0%E5%BD%95/20260413%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E8%AE%A1%E5%88%92%E4%B8%8E%E6%8E%A5%E5%8F%A3%E9%AA%8C%E8%AF%81%E6%96%B9%E6%B3%95%E8%AE%A8%E8%AE%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    会议记录：项目开发计划与接口验证方法讨论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="-d3">地址点表 - D3</h1>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>动作延迟</th>
+<th></th>
+<th></th>
+<th></th>
+<th>斜率</th>
+<th></th>
+<th></th>
+<th></th>
+<th>预调1</th>
+<th></th>
+<th></th>
+<th></th>
+<th>预调2</th>
+<th></th>
+<th></th>
+<th></th>
+<th>预调3</th>
+<th></th>
+<th></th>
+<th></th>
+<th>电子尺</th>
+<th></th>
+<th></th>
+<th>I/O转移</th>
+<th></th>
+<th></th>
+<th>特殊</th>
+<th></th>
+<th></th>
+<th></th>
+<th>比例上限</th>
+<th></th>
+<th>IO强制</th>
+<th></th>
+<th></th>
+<th>温度</th>
+<th></th>
+<th></th>
+<th></th>
+<th>伺服控制</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td>D3000</td>
+<td>合模起始</td>
+<td>D3050</td>
+<td></td>
+<td>D3100</td>
+<td>合模P启动</td>
+<td>D3150</td>
+<td>射出P启动</td>
+<td>D3200</td>
+<td>初始数据</td>
+<td>D3250</td>
+<td>数据值11</td>
+<td>D3300</td>
+<td></td>
+<td>D3350</td>
+<td></td>
+<td>D3400</td>
+<td></td>
+<td>D3450</td>
+<td></td>
+<td>D3500</td>
+<td>合模</td>
+<td>功能1</td>
+<td>D3550</td>
+<td>输出</td>
+<td>转移IN1</td>
+<td>D3600</td>
+<td>开消阀</td>
+<td>D3650</td>
+<td>座进停止方式</td>
+<td>D3700</td>
+<td>合模压力</td>
+<td>D3750</td>
+<td>输入</td>
+<td>常开/常闭1</td>
+<td>D3800</td>
+<td>功能1</td>
+<td>D3850</td>
+<td></td>
+<td>D3900</td>
+<td></td>
+<td>D3950</td>
+</tr>
+<tr>
+<td></td>
+<td>D3001</td>
+<td>合模结束</td>
+<td>D3051</td>
+<td></td>
+<td>D3101</td>
+<td>合模P中间</td>
+<td>D3151</td>
+<td>射出P中间</td>
+<td>D3201</td>
+<td>预调流量</td>
+<td>D3251</td>
+<td>数据值12</td>
+<td>D3301</td>
+<td></td>
+<td>D3351</td>
+<td></td>
+<td>D3401</td>
+<td></td>
+<td>D3451</td>
+<td></td>
+<td>D3501</td>
+<td></td>
+<td>测量值1</td>
+<td>D3551</td>
+<td></td>
+<td>转移OUT1</td>
+<td>D3601</td>
+<td>合模自保</td>
+<td>D3651</td>
+<td>座退停止方式</td>
+<td>D3701</td>
+<td>合模流量</td>
+<td>D3751</td>
+<td></td>
+<td>常开/常闭2</td>
+<td>D3801</td>
+<td>功能2</td>
+<td>D3851</td>
+<td></td>
+<td>D3901</td>
+<td></td>
+<td>D3951</td>
+</tr>
+<tr>
+<td></td>
+<td>D3002</td>
+<td>座进起始</td>
+<td>D3052</td>
+<td></td>
+<td>D3102</td>
+<td>合模P停止</td>
+<td>D3152</td>
+<td>射出P停止</td>
+<td>D3202</td>
+<td></td>
+<td>D3252</td>
+<td>数据值13</td>
+<td>D3302</td>
+<td></td>
+<td>D3352</td>
+<td></td>
+<td>D3402</td>
+<td></td>
+<td>D3452</td>
+<td></td>
+<td>D3502</td>
+<td></td>
+<td>总长1</td>
+<td>D3552</td>
+<td></td>
+<td>转移ON/OFF1</td>
+<td>D3602</td>
+<td>合模终止</td>
+<td>D3652</td>
+<td></td>
+<td>D3702</td>
+<td>开模压力</td>
+<td>D3752</td>
+<td></td>
+<td>常开/常闭3</td>
+<td>D3802</td>
+<td>功能3</td>
+<td>D3852</td>
+<td></td>
+<td>D3902</td>
+<td></td>
+<td>D3952</td>
+</tr>
+<tr>
+<td></td>
+<td>D3003</td>
+<td>座进结束</td>
+<td>D3053</td>
+<td></td>
+<td>D3103</td>
+<td>合模P中途停止</td>
+<td>D3153</td>
+<td>射出F启动</td>
+<td>D3203</td>
+<td>预调斜率</td>
+<td>D3253</td>
+<td>数据值14</td>
+<td>D3303</td>
+<td></td>
+<td>D3353</td>
+<td></td>
+<td>D3403</td>
+<td></td>
+<td>D3453</td>
+<td></td>
+<td>D3503</td>
+<td></td>
+<td>限长1</td>
+<td>D3553</td>
+<td></td>
+<td>转移IN2</td>
+<td>D3603</td>
+<td></td>
+<td>D3653</td>
+<td></td>
+<td>D3703</td>
+<td>开模流量</td>
+<td>D3753</td>
+<td></td>
+<td>强制1</td>
+<td>D3803</td>
+<td>功能4</td>
+<td>D3853</td>
+<td></td>
+<td>D3903</td>
+<td></td>
+<td>D3953</td>
+</tr>
+<tr>
+<td></td>
+<td>D3004</td>
+<td>射出起始</td>
+<td>D3054</td>
+<td></td>
+<td>D3104</td>
+<td>合模F启动</td>
+<td>D3154</td>
+<td>射出F中间</td>
+<td>D3204</td>
+<td></td>
+<td>D3254</td>
+<td>数据值15</td>
+<td>D3304</td>
+<td></td>
+<td>D3354</td>
+<td></td>
+<td>D3404</td>
+<td></td>
+<td>D3454</td>
+<td></td>
+<td>D3504</td>
+<td></td>
+<td>原点1</td>
+<td>D3554</td>
+<td></td>
+<td>转移OUT2</td>
+<td>D3604</td>
+<td></td>
+<td>D3654</td>
+<td></td>
+<td>D3704</td>
+<td>座台压力</td>
+<td>D3754</td>
+<td></td>
+<td>强制2</td>
+<td>D3804</td>
+<td>功能5</td>
+<td>D3854</td>
+<td></td>
+<td>D3904</td>
+<td></td>
+<td>D3954</td>
+</tr>
+<tr>
+<td></td>
+<td>D3005</td>
+<td>射出结束</td>
+<td>D3055</td>
+<td></td>
+<td>D3105</td>
+<td>合模F中间</td>
+<td>D3155</td>
+<td>射出F停止</td>
+<td>D3205</td>
+<td></td>
+<td>D3255</td>
+<td>数据值16</td>
+<td>D3305</td>
+<td></td>
+<td>D3355</td>
+<td></td>
+<td>D3405</td>
+<td></td>
+<td>D3455</td>
+<td></td>
+<td>D3505</td>
+<td>螺杆</td>
+<td>功能1</td>
+<td>D3555</td>
+<td></td>
+<td>转移ON/OFF2</td>
+<td>D3605</td>
+<td></td>
+<td>D3655</td>
+<td>托进停止方式</td>
+<td>D3705</td>
+<td>座台流量</td>
+<td>D3755</td>
+<td></td>
+<td>强制3</td>
+<td>D3805</td>
+<td>功能6</td>
+<td>D3855</td>
+<td></td>
+<td>D3905</td>
+<td></td>
+<td>D3955</td>
+</tr>
+<tr>
+<td></td>
+<td>D3006</td>
+<td>储料起始</td>
+<td>D3056</td>
+<td></td>
+<td>D3106</td>
+<td>合模F停止</td>
+<td>D3156</td>
+<td></td>
+<td>D3206</td>
+<td>输出电流</td>
+<td>D3256</td>
+<td>数据值17</td>
+<td>D3306</td>
+<td></td>
+<td>D3356</td>
+<td></td>
+<td>D3406</td>
+<td></td>
+<td>D3456</td>
+<td></td>
+<td>D3506</td>
+<td></td>
+<td>测量值1</td>
+<td>D3556</td>
+<td></td>
+<td>转移IN3</td>
+<td>D3606</td>
+<td></td>
+<td>D3656</td>
+<td>托退停止方式</td>
+<td>D3706</td>
+<td>射出压力</td>
+<td>D3756</td>
+<td></td>
+<td></td>
+<td>D3806</td>
+<td>功能7</td>
+<td>D3856</td>
+<td></td>
+<td>D3906</td>
+<td></td>
+<td>D3956</td>
+</tr>
+<tr>
+<td></td>
+<td>D3007</td>
+<td>储料结束</td>
+<td>D3057</td>
+<td></td>
+<td>D3107</td>
+<td>合模F中途停止</td>
+<td>D3157</td>
+<td></td>
+<td>D3207</td>
+<td></td>
+<td>D3257</td>
+<td>数据值18</td>
+<td>D3307</td>
+<td></td>
+<td>D3357</td>
+<td></td>
+<td>D3407</td>
+<td></td>
+<td>D3457</td>
+<td></td>
+<td>D3507</td>
+<td></td>
+<td>总长1</td>
+<td>D3557</td>
+<td></td>
+<td>转移OUT3</td>
+<td>D3607</td>
+<td></td>
+<td>D3657</td>
+<td></td>
+<td>D3707</td>
+<td>射出流量</td>
+<td>D3757</td>
+<td></td>
+<td></td>
+<td>D3807</td>
+<td>功能8</td>
+<td>D3857</td>
+<td></td>
+<td>D3907</td>
+<td></td>
+<td>D3957</td>
+</tr>
+<tr>
+<td></td>
+<td>D3008</td>
+<td>抽胶起始</td>
+<td>D3058</td>
+<td></td>
+<td>D3108</td>
+<td></td>
+<td>D3158</td>
+<td>保压P启动</td>
+<td>D3208</td>
+<td></td>
+<td>D3258</td>
+<td>数据值19</td>
+<td>D3308</td>
+<td></td>
+<td>D3358</td>
+<td></td>
+<td>D3408</td>
+<td></td>
+<td>D3458</td>
+<td></td>
+<td>D3508</td>
+<td></td>
+<td>限长1</td>
+<td>D3558</td>
+<td></td>
+<td>转移ON/OFF3</td>
+<td>D3608</td>
+<td></td>
+<td>D3658</td>
+<td></td>
+<td>D3708</td>
+<td>托模压力</td>
+<td>D3758</td>
+<td></td>
+<td></td>
+<td>D3808</td>
+<td>功能9</td>
+<td>D3858</td>
+<td></td>
+<td>D3908</td>
+<td></td>
+<td>D3958</td>
+</tr>
+<tr>
+<td></td>
+<td>D3009</td>
+<td>抽胶结束</td>
+<td>D3059</td>
+<td></td>
+<td>D3109</td>
+<td></td>
+<td>D3159</td>
+<td>保压P中间</td>
+<td>D3209</td>
+<td></td>
+<td>D3259</td>
+<td>数据值20</td>
+<td>D3309</td>
+<td></td>
+<td>D3359</td>
+<td></td>
+<td>D3409</td>
+<td></td>
+<td>D3459</td>
+<td></td>
+<td>D3509</td>
+<td></td>
+<td>原点1</td>
+<td>D3559</td>
+<td></td>
+<td>转移IN4</td>
+<td>D3609</td>
+<td></td>
+<td>D3659</td>
+<td></td>
+<td>D3709</td>
+<td>托模流量</td>
+<td>D3759</td>
+<td></td>
+<td>不用/使用</td>
+<td>D3809</td>
+<td>功能10</td>
+<td>D3859</td>
+<td></td>
+<td>D3909</td>
+<td></td>
+<td>D3959</td>
+</tr>
+<tr>
+<td></td>
+<td>D3010</td>
+<td>座退起始</td>
+<td>D3060</td>
+<td></td>
+<td>D3110</td>
+<td>开模P启动</td>
+<td>D3160</td>
+<td>保压P停止</td>
+<td>D3210</td>
+<td>设置值1</td>
+<td>D3260</td>
+<td>数据值21</td>
+<td>D3310</td>
+<td></td>
+<td>D3360</td>
+<td></td>
+<td>D3410</td>
+<td></td>
+<td>D3460</td>
+<td></td>
+<td>D3510</td>
+<td>左托模</td>
+<td>功能1</td>
+<td>D3560</td>
+<td></td>
+<td>转移OUT4</td>
+<td>D3610</td>
+<td></td>
+<td>D3660</td>
+<td></td>
+<td>D3710</td>
+<td>开模卸压压力</td>
+<td>D3760</td>
+<td>输出</td>
+<td>常开/常闭1</td>
+<td>D3810</td>
+<td>功能11</td>
+<td>D3860</td>
+<td></td>
+<td>D3910</td>
+<td></td>
+<td>D3960</td>
+</tr>
+<tr>
+<td></td>
+<td>D3011</td>
+<td>座退结束</td>
+<td>D3061</td>
+<td></td>
+<td>D3111</td>
+<td>开模P中间</td>
+<td>D3161</td>
+<td>保压F启动</td>
+<td>D3211</td>
+<td>设置值2</td>
+<td>D3261</td>
+<td>数据值22</td>
+<td>D3311</td>
+<td></td>
+<td>D3361</td>
+<td></td>
+<td>D3411</td>
+<td></td>
+<td>D3461</td>
+<td></td>
+<td>D3511</td>
+<td></td>
+<td>测量值1</td>
+<td>D3561</td>
+<td></td>
+<td>转移ON/OFF4</td>
+<td>D3611</td>
+<td></td>
+<td>D3661</td>
+<td></td>
+<td>D3711</td>
+<td>开模卸压流量</td>
+<td>D3761</td>
+<td></td>
+<td>常开/常闭2</td>
+<td>D3811</td>
+<td>功能12</td>
+<td>D3861</td>
+<td></td>
+<td>D3911</td>
+<td></td>
+<td>D3961</td>
+</tr>
+<tr>
+<td></td>
+<td>D3012</td>
+<td>开模起始</td>
+<td>D3062</td>
+<td></td>
+<td>D3112</td>
+<td>开模P停止</td>
+<td>D3162</td>
+<td>保压F中间</td>
+<td>D3212</td>
+<td>设置值3</td>
+<td>D3262</td>
+<td>数据值23</td>
+<td>D3312</td>
+<td></td>
+<td>D3362</td>
+<td></td>
+<td>D3412</td>
+<td></td>
+<td>D3462</td>
+<td></td>
+<td>D3512</td>
+<td></td>
+<td>总长1</td>
+<td>D3562</td>
+<td></td>
+<td>转移IN5</td>
+<td>D3612</td>
+<td></td>
+<td>D3662</td>
+<td></td>
+<td>D3712</td>
+<td></td>
+<td>D3762</td>
+<td></td>
+<td>常开/常闭3</td>
+<td>D3812</td>
+<td>P1</td>
+<td>D3862</td>
+<td></td>
+<td>D3912</td>
+<td></td>
+<td>D3962</td>
+</tr>
+<tr>
+<td></td>
+<td>D3013</td>
+<td>开模结束</td>
+<td>D3063</td>
+<td></td>
+<td>D3113</td>
+<td>开模P中途停止</td>
+<td>D3163</td>
+<td>保压F停止</td>
+<td>D3213</td>
+<td>设置值4</td>
+<td>D3263</td>
+<td>数据值24</td>
+<td>D3313</td>
+<td></td>
+<td>D3363</td>
+<td></td>
+<td>D3413</td>
+<td></td>
+<td>D3463</td>
+<td></td>
+<td>D3513</td>
+<td></td>
+<td>限长1</td>
+<td>D3563</td>
+<td></td>
+<td>转移OUT5</td>
+<td>D3613</td>
+<td></td>
+<td>D3663</td>
+<td></td>
+<td>D3713</td>
+<td></td>
+<td>D3763</td>
+<td></td>
+<td>强制1</td>
+<td>D3813</td>
+<td>P2</td>
+<td>D3863</td>
+<td></td>
+<td>D3913</td>
+<td></td>
+<td>D3963</td>
+</tr>
+<tr>
+<td></td>
+<td>D3014</td>
+<td>引阀起始</td>
+<td>D3064</td>
+<td></td>
+<td>D3114</td>
+<td>开模F启动</td>
+<td>D3164</td>
+<td></td>
+<td>D3214</td>
+<td>设置值5</td>
+<td>D3264</td>
+<td>数据值25</td>
+<td>D3314</td>
+<td></td>
+<td>D3364</td>
+<td></td>
+<td>D3414</td>
+<td></td>
+<td>D3464</td>
+<td></td>
+<td>D3514</td>
+<td></td>
+<td>原点1</td>
+<td>D3564</td>
+<td></td>
+<td>转移ON/OFF5</td>
+<td>D3614</td>
+<td></td>
+<td>D3664</td>
+<td></td>
+<td>D3714</td>
+<td></td>
+<td>D3764</td>
+<td></td>
+<td>强制2</td>
+<td>D3814</td>
+<td>P3</td>
+<td>D3864</td>
+<td></td>
+<td>D3914</td>
+<td></td>
+<td>D3964</td>
+</tr>
+<tr>
+<td></td>
+<td>D3015</td>
+<td>引阀结束</td>
+<td>D3065</td>
+<td></td>
+<td>D3115</td>
+<td>开模F中间</td>
+<td>D3165</td>
+<td></td>
+<td>D3215</td>
+<td>设置值6</td>
+<td>D3265</td>
+<td>数据值26</td>
+<td>D3315</td>
+<td></td>
+<td>D3365</td>
+<td></td>
+<td>D3415</td>
+<td></td>
+<td>D3465</td>
+<td></td>
+<td>D3515</td>
+<td>移模</td>
+<td>功能1</td>
+<td>D3565</td>
+<td></td>
+<td>转移IN6</td>
+<td>D3615</td>
+<td></td>
+<td>D3665</td>
+<td></td>
+<td>D3715</td>
+<td></td>
+<td>D3765</td>
+<td></td>
+<td>强制3</td>
+<td>D3815</td>
+<td>P4</td>
+<td>D3865</td>
+<td></td>
+<td>D3915</td>
+<td></td>
+<td>D3965</td>
+</tr>
+<tr>
+<td></td>
+<td>D3016</td>
+<td>托模进起始</td>
+<td>D3066</td>
+<td></td>
+<td>D3116</td>
+<td>开模F停止</td>
+<td>D3166</td>
+<td>射退P启动</td>
+<td>D3216</td>
+<td>设置值7</td>
+<td>D3266</td>
+<td>数据值27</td>
+<td>D3316</td>
+<td></td>
+<td>D3366</td>
+<td></td>
+<td>D3416</td>
+<td></td>
+<td>D3466</td>
+<td></td>
+<td>D3516</td>
+<td></td>
+<td>测量值1</td>
+<td>D3566</td>
+<td></td>
+<td>转移OUT6</td>
+<td>D3616</td>
+<td></td>
+<td>D3666</td>
+<td></td>
+<td>D3716</td>
+<td></td>
+<td>D3766</td>
+<td></td>
+<td></td>
+<td>D3816</td>
+<td>P5</td>
+<td>D3866</td>
+<td></td>
+<td>D3916</td>
+<td></td>
+<td>D3966</td>
+</tr>
+<tr>
+<td></td>
+<td>D3017</td>
+<td>托模进结束</td>
+<td>D3067</td>
+<td></td>
+<td>D3117</td>
+<td>开模F中途停止</td>
+<td>D3167</td>
+<td>射退P中间</td>
+<td>D3217</td>
+<td>设置值8</td>
+<td>D3267</td>
+<td>数据值28</td>
+<td>D3317</td>
+<td></td>
+<td>D3367</td>
+<td></td>
+<td>D3417</td>
+<td></td>
+<td>D3467</td>
+<td></td>
+<td>D3517</td>
+<td></td>
+<td>总长1</td>
+<td>D3567</td>
+<td></td>
+<td>转移ON/OFF6</td>
+<td>D3617</td>
+<td></td>
+<td>D3667</td>
+<td></td>
+<td>D3717</td>
+<td></td>
+<td>D3767</td>
+<td></td>
+<td></td>
+<td>D3817</td>
+<td>P6</td>
+<td>D3867</td>
+<td></td>
+<td>D3917</td>
+<td></td>
+<td>D3967</td>
+</tr>
+<tr>
+<td></td>
+<td>D3018</td>
+<td>托模退起始</td>
+<td>D3068</td>
+<td></td>
+<td>D3118</td>
+<td></td>
+<td>D3168</td>
+<td>射退P停止</td>
+<td>D3218</td>
+<td>设置值9</td>
+<td>D3268</td>
+<td>数据值29</td>
+<td>D3318</td>
+<td></td>
+<td>D3368</td>
+<td></td>
+<td>D3418</td>
+<td></td>
+<td>D3468</td>
+<td></td>
+<td>D3518</td>
+<td></td>
+<td>限长1</td>
+<td>D3568</td>
+<td></td>
+<td>转移IN7</td>
+<td>D3618</td>
+<td></td>
+<td>D3668</td>
+<td></td>
+<td>D3718</td>
+<td></td>
+<td>D3768</td>
+<td></td>
+<td></td>
+<td>D3818</td>
+<td>P7</td>
+<td>D3868</td>
+<td></td>
+<td>D3918</td>
+<td></td>
+<td>D3968</td>
+</tr>
+<tr>
+<td></td>
+<td>D3019</td>
+<td>托模退结束</td>
+<td>D3069</td>
+<td></td>
+<td>D3119</td>
+<td></td>
+<td>D3169</td>
+<td>射退F启动</td>
+<td>D3219</td>
+<td>设置值10</td>
+<td>D3269</td>
+<td>数据值30</td>
+<td>D3319</td>
+<td></td>
+<td>D3369</td>
+<td></td>
+<td>D3419</td>
+<td></td>
+<td>D3469</td>
+<td></td>
+<td>D3519</td>
+<td></td>
+<td>原点1</td>
+<td>D3569</td>
+<td></td>
+<td>转移OUT7</td>
+<td>D3619</td>
+<td></td>
+<td>D3669</td>
+<td></td>
+<td>D3719</td>
+<td></td>
+<td>D3769</td>
+<td></td>
+<td>不用/使用</td>
+<td>D3819</td>
+<td>P8</td>
+<td>D3869</td>
+<td></td>
+<td>D3919</td>
+<td></td>
+<td>D3969</td>
+</tr>
+<tr>
+<td></td>
+<td>D3020</td>
+<td></td>
+<td>D3070</td>
+<td></td>
+<td>D3120</td>
+<td>托模进P启动</td>
+<td>D3170</td>
+<td>射退F中间</td>
+<td>D3220</td>
+<td>设置值11</td>
+<td>D3270</td>
+<td>开关值1</td>
+<td>D3320</td>
+<td></td>
+<td>D3370</td>
+<td></td>
+<td>D3420</td>
+<td></td>
+<td>D3470</td>
+<td></td>
+<td>D3520</td>
+<td>座台</td>
+<td>功能1</td>
+<td>D3570</td>
+<td></td>
+<td>转移ON/OFF7</td>
+<td>D3620</td>
+<td></td>
+<td>D3670</td>
+<td></td>
+<td>D3720</td>
+<td></td>
+<td>D3770</td>
+<td></td>
+<td></td>
+<td>D3820</td>
+<td>P9</td>
+<td>D3870</td>
+<td></td>
+<td>D3920</td>
+<td></td>
+<td>D3970</td>
+</tr>
+<tr>
+<td></td>
+<td>D3021</td>
+<td></td>
+<td>D3071</td>
+<td></td>
+<td>D3121</td>
+<td>托模进P中间</td>
+<td>D3171</td>
+<td>射退F停止</td>
+<td>D3221</td>
+<td>设置值12</td>
+<td>D3271</td>
+<td>开关值2</td>
+<td>D3321</td>
+<td></td>
+<td>D3371</td>
+<td></td>
+<td>D3421</td>
+<td></td>
+<td>D3471</td>
+<td></td>
+<td>D3521</td>
+<td></td>
+<td>测量值1</td>
+<td>D3571</td>
+<td></td>
+<td>转移IN8</td>
+<td>D3621</td>
+<td></td>
+<td>D3671</td>
+<td></td>
+<td>D3721</td>
+<td></td>
+<td>D3771</td>
+<td></td>
+<td></td>
+<td>D3821</td>
+<td>P10</td>
+<td>D3871</td>
+<td></td>
+<td>D3921</td>
+<td></td>
+<td>D3971</td>
+</tr>
+<tr>
+<td></td>
+<td>D3022</td>
+<td></td>
+<td>D3072</td>
+<td></td>
+<td>D3122</td>
+<td>托模进P停止</td>
+<td>D3172</td>
+<td></td>
+<td>D3222</td>
+<td>设置值13</td>
+<td>D3272</td>
+<td>开关值3</td>
+<td>D3322</td>
+<td></td>
+<td>D3372</td>
+<td></td>
+<td>D3422</td>
+<td></td>
+<td>D3472</td>
+<td></td>
+<td>D3522</td>
+<td></td>
+<td>总长1</td>
+<td>D3572</td>
+<td></td>
+<td>转移OUT8</td>
+<td>D3622</td>
+<td></td>
+<td>D3672</td>
+<td></td>
+<td>D3722</td>
+<td></td>
+<td>D3772</td>
+<td></td>
+<td></td>
+<td>D3822</td>
+<td>P11</td>
+<td>D3872</td>
+<td></td>
+<td>D3922</td>
+<td></td>
+<td>D3972</td>
+</tr>
+<tr>
+<td></td>
+<td>D3023</td>
+<td></td>
+<td>D3073</td>
+<td></td>
+<td>D3123</td>
+<td>托模进F启动</td>
+<td>D3173</td>
+<td></td>
+<td>D3223</td>
+<td>设置值14</td>
+<td>D3273</td>
+<td>开关值4</td>
+<td>D3323</td>
+<td></td>
+<td>D3373</td>
+<td></td>
+<td>D3423</td>
+<td></td>
+<td>D3473</td>
+<td></td>
+<td>D3523</td>
+<td></td>
+<td>限长1</td>
+<td>D3573</td>
+<td></td>
+<td>转移ON/OFF8</td>
+<td>D3623</td>
+<td></td>
+<td>D3673</td>
+<td></td>
+<td>D3723</td>
+<td></td>
+<td>D3773</td>
+<td></td>
+<td></td>
+<td>D3823</td>
+<td>P12</td>
+<td>D3873</td>
+<td></td>
+<td>D3923</td>
+<td></td>
+<td>D3973</td>
+</tr>
+<tr>
+<td></td>
+<td>D3024</td>
+<td></td>
+<td>D3074</td>
+<td></td>
+<td>D3124</td>
+<td>托模进F中间</td>
+<td>D3174</td>
+<td>储料P启动</td>
+<td>D3224</td>
+<td>设置值15</td>
+<td>D3274</td>
+<td>开关值5</td>
+<td>D3324</td>
+<td></td>
+<td>D3374</td>
+<td></td>
+<td>D3424</td>
+<td></td>
+<td>D3474</td>
+<td></td>
+<td>D3524</td>
+<td></td>
+<td>原点1</td>
+<td>D3574</td>
+<td></td>
+<td></td>
+<td>D3624</td>
+<td></td>
+<td>D3674</td>
+<td></td>
+<td>D3724</td>
+<td></td>
+<td>D3774</td>
+<td></td>
+<td></td>
+<td>D3824</td>
+<td>D1</td>
+<td>D3874</td>
+<td></td>
+<td>D3924</td>
+<td></td>
+<td>D3974</td>
+</tr>
+<tr>
+<td></td>
+<td>D3025</td>
+<td></td>
+<td>D3075</td>
+<td></td>
+<td>D3125</td>
+<td>托模进F停止</td>
+<td>D3175</td>
+<td>储料P中间</td>
+<td>D3225</td>
+<td>设置值16</td>
+<td>D3275</td>
+<td>开关值6</td>
+<td>D3325</td>
+<td></td>
+<td>D3375</td>
+<td></td>
+<td>D3425</td>
+<td></td>
+<td>D3475</td>
+<td></td>
+<td>D3525</td>
+<td>右托模</td>
+<td>功能1</td>
+<td>D3575</td>
+<td>输入</td>
+<td>转移IN1</td>
+<td>D3625</td>
+<td></td>
+<td>D3675</td>
+<td></td>
+<td>D3725</td>
+<td></td>
+<td>D3775</td>
+<td></td>
+<td></td>
+<td>D3825</td>
+<td>D2</td>
+<td>D3875</td>
+<td></td>
+<td>D3925</td>
+<td></td>
+<td>D3975</td>
+</tr>
+<tr>
+<td></td>
+<td>D3026</td>
+<td></td>
+<td>D3076</td>
+<td></td>
+<td>D3126</td>
+<td></td>
+<td>D3176</td>
+<td>储料P停止</td>
+<td>D3226</td>
+<td>设置值17</td>
+<td>D3276</td>
+<td>开关值7</td>
+<td>D3326</td>
+<td></td>
+<td>D3376</td>
+<td></td>
+<td>D3426</td>
+<td></td>
+<td>D3476</td>
+<td></td>
+<td>D3526</td>
+<td></td>
+<td>测量值1</td>
+<td>D3576</td>
+<td></td>
+<td>转移OUT1</td>
+<td>D3626</td>
+<td></td>
+<td>D3676</td>
+<td></td>
+<td>D3726</td>
+<td></td>
+<td>D3776</td>
+<td></td>
+<td></td>
+<td>D3826</td>
+<td>D3</td>
+<td>D3876</td>
+<td></td>
+<td>D3926</td>
+<td></td>
+<td>D3976</td>
+</tr>
+<tr>
+<td></td>
+<td>D3027</td>
+<td></td>
+<td>D3077</td>
+<td></td>
+<td>D3127</td>
+<td></td>
+<td>D3177</td>
+<td>储料F启动</td>
+<td>D3227</td>
+<td>设置值18</td>
+<td>D3277</td>
+<td>开关值8</td>
+<td>D3327</td>
+<td></td>
+<td>D3377</td>
+<td></td>
+<td>D3427</td>
+<td></td>
+<td>D3477</td>
+<td></td>
+<td>D3527</td>
+<td></td>
+<td>总长1</td>
+<td>D3577</td>
+<td></td>
+<td>转移ON/OFF1</td>
+<td>D3627</td>
+<td></td>
+<td>D3677</td>
+<td></td>
+<td>D3727</td>
+<td></td>
+<td>D3777</td>
+<td></td>
+<td></td>
+<td>D3827</td>
+<td>D4</td>
+<td>D3877</td>
+<td></td>
+<td>D3927</td>
+<td></td>
+<td>D3977</td>
+</tr>
+<tr>
+<td></td>
+<td>D3028</td>
+<td></td>
+<td>D3078</td>
+<td></td>
+<td>D3128</td>
+<td>托模退P启动</td>
+<td>D3178</td>
+<td>储料F中间</td>
+<td>D3228</td>
+<td>设置值19</td>
+<td>D3278</td>
+<td>开关值9</td>
+<td>D3328</td>
+<td></td>
+<td>D3378</td>
+<td></td>
+<td>D3428</td>
+<td></td>
+<td>D3478</td>
+<td></td>
+<td>D3528</td>
+<td></td>
+<td>限长1</td>
+<td>D3578</td>
+<td></td>
+<td>转移IN2</td>
+<td>D3628</td>
+<td></td>
+<td>D3678</td>
+<td></td>
+<td>D3728</td>
+<td></td>
+<td>D3778</td>
+<td></td>
+<td></td>
+<td>D3828</td>
+<td>D5</td>
+<td>D3878</td>
+<td></td>
+<td>D3928</td>
+<td></td>
+<td>D3978</td>
+</tr>
+<tr>
+<td></td>
+<td>D3029</td>
+<td></td>
+<td>D3079</td>
+<td></td>
+<td>D3129</td>
+<td>托模退P中间</td>
+<td>D3179</td>
+<td>储料F停止</td>
+<td>D3229</td>
+<td>设置值20</td>
+<td>D3279</td>
+<td>开关值10</td>
+<td>D3329</td>
+<td></td>
+<td>D3379</td>
+<td></td>
+<td>D3429</td>
+<td></td>
+<td>D3479</td>
+<td></td>
+<td>D3529</td>
+<td></td>
+<td>原点1</td>
+<td>D3579</td>
+<td></td>
+<td>转移OUT2</td>
+<td>D3629</td>
+<td></td>
+<td>D3679</td>
+<td></td>
+<td>D3729</td>
+<td></td>
+<td>D3779</td>
+<td></td>
+<td></td>
+<td>D3829</td>
+<td>D6</td>
+<td>D3879</td>
+<td></td>
+<td>D3929</td>
+<td></td>
+<td>D3979</td>
+</tr>
+<tr>
+<td></td>
+<td>D3030</td>
+<td></td>
+<td>D3080</td>
+<td></td>
+<td>D3130</td>
+<td>托模退P停止</td>
+<td>D3180</td>
+<td></td>
+<td>D3230</td>
+<td>设置值21</td>
+<td>D3280</td>
+<td>开关值11</td>
+<td>D3330</td>
+<td></td>
+<td>D3380</td>
+<td></td>
+<td>D3430</td>
+<td></td>
+<td>D3480</td>
+<td></td>
+<td>D3530</td>
+<td></td>
+<td>功能1</td>
+<td>D3580</td>
+<td></td>
+<td>转移ON/OFF2</td>
+<td>D3630</td>
+<td></td>
+<td>D3680</td>
+<td></td>
+<td>D3730</td>
+<td></td>
+<td>D3780</td>
+<td></td>
+<td></td>
+<td>D3830</td>
+<td>D7</td>
+<td>D3880</td>
+<td></td>
+<td>D3930</td>
+<td></td>
+<td>D3980</td>
+</tr>
+<tr>
+<td></td>
+<td>D3031</td>
+<td></td>
+<td>D3081</td>
+<td></td>
+<td>D3131</td>
+<td>托模退F启动</td>
+<td>D3181</td>
+<td></td>
+<td>D3231</td>
+<td>设置值22</td>
+<td>D3281</td>
+<td>开关值12</td>
+<td>D3331</td>
+<td></td>
+<td>D3381</td>
+<td></td>
+<td>D3431</td>
+<td></td>
+<td>D3481</td>
+<td></td>
+<td>D3531</td>
+<td></td>
+<td>测量值1</td>
+<td>D3581</td>
+<td></td>
+<td>转移IN3</td>
+<td>D3631</td>
+<td></td>
+<td>D3681</td>
+<td></td>
+<td>D3731</td>
+<td></td>
+<td>D3781</td>
+<td></td>
+<td></td>
+<td>D3831</td>
+<td>D8</td>
+<td>D3881</td>
+<td></td>
+<td>D3931</td>
+<td></td>
+<td>D3981</td>
+</tr>
+<tr>
+<td></td>
+<td>D3032</td>
+<td></td>
+<td>D3082</td>
+<td></td>
+<td>D3132</td>
+<td>托模退F中间</td>
+<td>D3182</td>
+<td>备用P启动</td>
+<td>D3232</td>
+<td>设置值23</td>
+<td>D3282</td>
+<td>开关值13</td>
+<td>D3332</td>
+<td></td>
+<td>D3382</td>
+<td></td>
+<td>D3432</td>
+<td></td>
+<td>D3482</td>
+<td></td>
+<td>D3532</td>
+<td></td>
+<td>总长1</td>
+<td>D3582</td>
+<td></td>
+<td>转移OUT3</td>
+<td>D3632</td>
+<td></td>
+<td>D3682</td>
+<td></td>
+<td>D3732</td>
+<td></td>
+<td>D3782</td>
+<td></td>
+<td></td>
+<td>D3832</td>
+<td>D9</td>
+<td>D3882</td>
+<td></td>
+<td>D3932</td>
+<td></td>
+<td>D3982</td>
+</tr>
+<tr>
+<td></td>
+<td>D3033</td>
+<td></td>
+<td>D3083</td>
+<td></td>
+<td>D3133</td>
+<td>托模退F停止</td>
+<td>D3183</td>
+<td>备用P中间</td>
+<td>D3233</td>
+<td>设置值24</td>
+<td>D3283</td>
+<td>开关值14</td>
+<td>D3333</td>
+<td></td>
+<td>D3383</td>
+<td></td>
+<td>D3433</td>
+<td></td>
+<td>D3483</td>
+<td></td>
+<td>D3533</td>
+<td></td>
+<td>限长1</td>
+<td>D3583</td>
+<td></td>
+<td>转移ON/OFF3</td>
+<td>D3633</td>
+<td></td>
+<td>D3683</td>
+<td></td>
+<td>D3733</td>
+<td></td>
+<td>D3783</td>
+<td></td>
+<td></td>
+<td>D3833</td>
+<td>D10</td>
+<td>D3883</td>
+<td></td>
+<td>D3933</td>
+<td></td>
+<td>D3983</td>
+</tr>
+<tr>
+<td></td>
+<td>D3034</td>
+<td></td>
+<td>D3084</td>
+<td></td>
+<td>D3134</td>
+<td></td>
+<td>D3184</td>
+<td>备用P停止</td>
+<td>D3234</td>
+<td>设置值25</td>
+<td>D3284</td>
+<td>开关值15</td>
+<td>D3334</td>
+<td></td>
+<td>D3384</td>
+<td></td>
+<td>D3434</td>
+<td></td>
+<td>D3484</td>
+<td></td>
+<td>D3534</td>
+<td></td>
+<td>原点1</td>
+<td>D3584</td>
+<td></td>
+<td>转移IN4</td>
+<td>D3634</td>
+<td></td>
+<td>D3684</td>
+<td></td>
+<td>D3734</td>
+<td></td>
+<td>D3784</td>
+<td></td>
+<td></td>
+<td>D3834</td>
+<td>D11</td>
+<td>D3884</td>
+<td></td>
+<td>D3934</td>
+<td></td>
+<td>D3984</td>
+</tr>
+<tr>
+<td></td>
+<td>D3035</td>
+<td></td>
+<td>D3085</td>
+<td></td>
+<td>D3135</td>
+<td></td>
+<td>D3185</td>
+<td>备用F启动</td>
+<td>D3235</td>
+<td>设置值26</td>
+<td>D3285</td>
+<td>开关值16</td>
+<td>D3335</td>
+<td></td>
+<td>D3385</td>
+<td></td>
+<td>D3435</td>
+<td></td>
+<td>D3485</td>
+<td></td>
+<td>D3535</td>
+<td>系统压</td>
+<td>功能1</td>
+<td>D3585</td>
+<td></td>
+<td>转移OUT4</td>
+<td>D3635</td>
+<td></td>
+<td>D3685</td>
+<td></td>
+<td>D3735</td>
+<td></td>
+<td>D3785</td>
+<td></td>
+<td></td>
+<td>D3835</td>
+<td>D12</td>
+<td>D3885</td>
+<td></td>
+<td>D3935</td>
+<td></td>
+<td>D3985</td>
+</tr>
+<tr>
+<td></td>
+<td>D3036</td>
+<td></td>
+<td>D3086</td>
+<td></td>
+<td>D3136</td>
+<td>座台进P启动</td>
+<td>D3186</td>
+<td>备用F中间</td>
+<td>D3236</td>
+<td>设置值27</td>
+<td>D3286</td>
+<td>开关值17</td>
+<td>D3336</td>
+<td></td>
+<td>D3386</td>
+<td></td>
+<td>D3436</td>
+<td></td>
+<td>D3486</td>
+<td></td>
+<td>D3536</td>
+<td></td>
+<td>测量值1</td>
+<td>D3586</td>
+<td></td>
+<td>转移ON/OFF4</td>
+<td>D3636</td>
+<td></td>
+<td>D3686</td>
+<td></td>
+<td>D3736</td>
+<td></td>
+<td>D3786</td>
+<td></td>
+<td></td>
+<td>D3836</td>
+<td></td>
+<td>D3886</td>
+<td></td>
+<td>D3936</td>
+<td></td>
+<td>D3986</td>
+</tr>
+<tr>
+<td></td>
+<td>D3037</td>
+<td></td>
+<td>D3087</td>
+<td></td>
+<td>D3137</td>
+<td>座台进P中间</td>
+<td>D3187</td>
+<td>备用F停止</td>
+<td>D3237</td>
+<td>设置值28</td>
+<td>D3287</td>
+<td>开关值18</td>
+<td>D3337</td>
+<td></td>
+<td>D3387</td>
+<td></td>
+<td>D3437</td>
+<td></td>
+<td>D3487</td>
+<td></td>
+<td>D3537</td>
+<td></td>
+<td>总长1</td>
+<td>D3587</td>
+<td></td>
+<td>转移IN5</td>
+<td>D3637</td>
+<td></td>
+<td>D3687</td>
+<td></td>
+<td>D3737</td>
+<td></td>
+<td>D3787</td>
+<td></td>
+<td></td>
+<td>D3837</td>
+<td></td>
+<td>D3887</td>
+<td></td>
+<td>D3937</td>
+<td></td>
+<td>D3987</td>
+</tr>
+<tr>
+<td></td>
+<td>D3038</td>
+<td></td>
+<td>D3088</td>
+<td></td>
+<td>D3138</td>
+<td>座台进P停止</td>
+<td>D3188</td>
+<td></td>
+<td>D3238</td>
+<td>设置值29</td>
+<td>D3288</td>
+<td>开关值19</td>
+<td>D3338</td>
+<td></td>
+<td>D3388</td>
+<td></td>
+<td>D3438</td>
+<td></td>
+<td>D3488</td>
+<td></td>
+<td>D3538</td>
+<td></td>
+<td>限长1</td>
+<td>D3588</td>
+<td></td>
+<td>转移OUT5</td>
+<td>D3638</td>
+<td></td>
+<td>D3688</td>
+<td></td>
+<td>D3738</td>
+<td></td>
+<td>D3788</td>
+<td></td>
+<td></td>
+<td>D3838</td>
+<td></td>
+<td>D3888</td>
+<td></td>
+<td>D3938</td>
+<td></td>
+<td>D3988</td>
+</tr>
+<tr>
+<td></td>
+<td>D3039</td>
+<td></td>
+<td>D3089</td>
+<td></td>
+<td>D3139</td>
+<td>座台进F启动</td>
+<td>D3189</td>
+<td></td>
+<td>D3239</td>
+<td>设置值30</td>
+<td>D3289</td>
+<td>开关值20</td>
+<td>D3339</td>
+<td></td>
+<td>D3389</td>
+<td></td>
+<td>D3439</td>
+<td></td>
+<td>D3489</td>
+<td></td>
+<td>D3539</td>
+<td></td>
+<td>原点1</td>
+<td>D3589</td>
+<td></td>
+<td>转移ON/OFF5</td>
+<td>D3639</td>
+<td></td>
+<td>D3689</td>
+<td></td>
+<td>D3739</td>
+<td></td>
+<td>D3789</td>
+<td></td>
+<td></td>
+<td>D3839</td>
+<td></td>
+<td>D3889</td>
+<td></td>
+<td>D3939</td>
+<td></td>
+<td>D3989</td>
+</tr>
+<tr>
+<td></td>
+<td>D3040</td>
+<td></td>
+<td>D3090</td>
+<td></td>
+<td>D3140</td>
+<td>座台进F中间</td>
+<td>D3190</td>
+<td>备用P启动</td>
+<td>D3240</td>
+<td>数据值1</td>
+<td>D3290</td>
+<td>开关值21</td>
+<td>D3340</td>
+<td></td>
+<td>D3390</td>
+<td></td>
+<td>D3440</td>
+<td></td>
+<td>D3490</td>
+<td></td>
+<td>D3540</td>
+<td>合模压</td>
+<td>功能1</td>
+<td>D3590</td>
+<td></td>
+<td>转移IN6</td>
+<td>D3640</td>
+<td></td>
+<td>D3690</td>
+<td></td>
+<td>D3740</td>
+<td>最大压力</td>
+<td>D3790</td>
+<td></td>
+<td></td>
+<td>D3840</td>
+<td>温度设定上限</td>
+<td>D3890</td>
+<td></td>
+<td>D3940</td>
+<td></td>
+<td>D3990</td>
+</tr>
+<tr>
+<td></td>
+<td>D3041</td>
+<td></td>
+<td>D3091</td>
+<td></td>
+<td>D3141</td>
+<td>座台进F停止</td>
+<td>D3191</td>
+<td>备用P中间</td>
+<td>D3241</td>
+<td>数据值2</td>
+<td>D3291</td>
+<td>开关值22</td>
+<td>D3341</td>
+<td></td>
+<td>D3391</td>
+<td></td>
+<td>D3441</td>
+<td></td>
+<td>D3491</td>
+<td></td>
+<td>D3541</td>
+<td></td>
+<td>测量值1</td>
+<td>D3591</td>
+<td></td>
+<td>转移OUT6</td>
+<td>D3641</td>
+<td></td>
+<td>D3691</td>
+<td></td>
+<td>D3741</td>
+<td></td>
+<td>D3791</td>
+<td></td>
+<td></td>
+<td>D3841</td>
+<td></td>
+<td>D3891</td>
+<td></td>
+<td>D3941</td>
+<td></td>
+<td>D3991</td>
+</tr>
+<tr>
+<td></td>
+<td>D3042</td>
+<td></td>
+<td>D3092</td>
+<td></td>
+<td>D3142</td>
+<td></td>
+<td>D3192</td>
+<td>备用P停止</td>
+<td>D3242</td>
+<td>数据值3</td>
+<td>D3292</td>
+<td>开关值23</td>
+<td>D3342</td>
+<td></td>
+<td>D3392</td>
+<td></td>
+<td>D3442</td>
+<td></td>
+<td>D3492</td>
+<td></td>
+<td>D3542</td>
+<td></td>
+<td>总长1</td>
+<td>D3592</td>
+<td></td>
+<td>转移ON/OFF6</td>
+<td>D3642</td>
+<td></td>
+<td>D3692</td>
+<td></td>
+<td>D3742</td>
+<td></td>
+<td>D3792</td>
+<td></td>
+<td></td>
+<td>D3842</td>
+<td></td>
+<td>D3892</td>
+<td></td>
+<td>D3942</td>
+<td></td>
+<td>D3992</td>
+</tr>
+<tr>
+<td></td>
+<td>D3043</td>
+<td></td>
+<td>D3093</td>
+<td></td>
+<td>D3143</td>
+<td></td>
+<td>D3193</td>
+<td>备用F启动</td>
+<td>D3243</td>
+<td>数据值4</td>
+<td>D3293</td>
+<td>开关值24</td>
+<td>D3343</td>
+<td></td>
+<td>D3393</td>
+<td></td>
+<td>D3443</td>
+<td></td>
+<td>D3493</td>
+<td></td>
+<td>D3543</td>
+<td></td>
+<td>限长1</td>
+<td>D3593</td>
+<td></td>
+<td>转移IN7</td>
+<td>D3643</td>
+<td></td>
+<td>D3693</td>
+<td></td>
+<td>D3743</td>
+<td></td>
+<td>D3793</td>
+<td></td>
+<td></td>
+<td>D3843</td>
+<td></td>
+<td>D3893</td>
+<td></td>
+<td>D3943</td>
+<td></td>
+<td>D3993</td>
+</tr>
+<tr>
+<td></td>
+<td>D3044</td>
+<td></td>
+<td>D3094</td>
+<td></td>
+<td>D3144</td>
+<td>座台退P启动</td>
+<td>D3194</td>
+<td>备用F中间</td>
+<td>D3244</td>
+<td>数据值5</td>
+<td>D3294</td>
+<td>开关值25</td>
+<td>D3344</td>
+<td></td>
+<td>D3394</td>
+<td></td>
+<td>D3444</td>
+<td></td>
+<td>D3494</td>
+<td></td>
+<td>D3544</td>
+<td></td>
+<td>原点1</td>
+<td>D3594</td>
+<td></td>
+<td>转移OUT7</td>
+<td>D3644</td>
+<td></td>
+<td>D3694</td>
+<td></td>
+<td>D3744</td>
+<td></td>
+<td>D3794</td>
+<td></td>
+<td></td>
+<td>D3844</td>
+<td></td>
+<td>D3894</td>
+<td></td>
+<td>D3944</td>
+<td></td>
+<td>D3994</td>
+</tr>
+<tr>
+<td></td>
+<td>D3045</td>
+<td></td>
+<td>D3095</td>
+<td></td>
+<td>D3145</td>
+<td>座台退P中间</td>
+<td>D3195</td>
+<td>备用F停止</td>
+<td>D3245</td>
+<td>数据值6</td>
+<td>D3295</td>
+<td>开关值26</td>
+<td>D3345</td>
+<td></td>
+<td>D3395</td>
+<td></td>
+<td>D3445</td>
+<td></td>
+<td>D3495</td>
+<td></td>
+<td>D3545</td>
+<td>射出压</td>
+<td>功能1</td>
+<td>D3595</td>
+<td></td>
+<td>转移ON/OFF7</td>
+<td>D3645</td>
+<td></td>
+<td>D3695</td>
+<td></td>
+<td>D3745</td>
+<td></td>
+<td>D3795</td>
+<td></td>
+<td></td>
+<td>D3845</td>
+<td></td>
+<td>D3895</td>
+<td></td>
+<td>D3945</td>
+<td></td>
+<td>D3995</td>
+</tr>
+<tr>
+<td></td>
+<td>D3046</td>
+<td></td>
+<td>D3096</td>
+<td></td>
+<td>D3146</td>
+<td>座台退P停止</td>
+<td>D3196</td>
+<td></td>
+<td>D3246</td>
+<td>数据值7</td>
+<td>D3296</td>
+<td>开关值27</td>
+<td>D3346</td>
+<td></td>
+<td>D3396</td>
+<td></td>
+<td>D3446</td>
+<td></td>
+<td>D3496</td>
+<td></td>
+<td>D3546</td>
+<td></td>
+<td>测量值1</td>
+<td>D3596</td>
+<td></td>
+<td>转移IN8</td>
+<td>D3646</td>
+<td></td>
+<td>D3696</td>
+<td></td>
+<td>D3746</td>
+<td></td>
+<td>D3796</td>
+<td></td>
+<td></td>
+<td>D3846</td>
+<td></td>
+<td>D3896</td>
+<td></td>
+<td>D3946</td>
+<td></td>
+<td>D3996</td>
+</tr>
+<tr>
+<td></td>
+<td>D3047</td>
+<td></td>
+<td>D3097</td>
+<td></td>
+<td>D3147</td>
+<td>座台退F启动</td>
+<td>D3197</td>
+<td></td>
+<td>D3247</td>
+<td>数据值8</td>
+<td>D3297</td>
+<td>开关值28</td>
+<td>D3347</td>
+<td></td>
+<td>D3397</td>
+<td></td>
+<td>D3447</td>
+<td></td>
+<td>D3497</td>
+<td></td>
+<td>D3547</td>
+<td></td>
+<td>总长1</td>
+<td>D3597</td>
+<td></td>
+<td>转移OUT8</td>
+<td>D3647</td>
+<td></td>
+<td>D3697</td>
+<td></td>
+<td>D3747</td>
+<td></td>
+<td>D3797</td>
+<td></td>
+<td></td>
+<td>D3847</td>
+<td></td>
+<td>D3897</td>
+<td></td>
+<td>D3947</td>
+<td></td>
+<td>D3997</td>
+</tr>
+<tr>
+<td></td>
+<td>D3048</td>
+<td></td>
+<td>D3098</td>
+<td></td>
+<td>D3148</td>
+<td>座台退F中间</td>
+<td>D3198</td>
+<td></td>
+<td>D3248</td>
+<td>数据值9</td>
+<td>D3298</td>
+<td>开关值29</td>
+<td>D3348</td>
+<td></td>
+<td>D3398</td>
+<td></td>
+<td>D3448</td>
+<td></td>
+<td>D3498</td>
+<td></td>
+<td>D3548</td>
+<td></td>
+<td>限长1</td>
+<td>D3598</td>
+<td></td>
+<td>转移ON/OFF8</td>
+<td>D3648</td>
+<td></td>
+<td>D3698</td>
+<td></td>
+<td>D3748</td>
+<td></td>
+<td>D3798</td>
+<td></td>
+<td></td>
+<td>D3848</td>
+<td></td>
+<td>D3898</td>
+<td></td>
+<td>D3948</td>
+<td></td>
+<td>D3998</td>
+</tr>
+<tr>
+<td></td>
+<td>D3049</td>
+<td></td>
+<td>D3099</td>
+<td></td>
+<td>D3149</td>
+<td>座台退F停止</td>
+<td>D3199</td>
+<td></td>
+<td>D3249</td>
+<td>数据值10</td>
+<td>D3299</td>
+<td>开关值30</td>
+<td>D3349</td>
+<td></td>
+<td>D3399</td>
+<td></td>
+<td>D3449</td>
+<td></td>
+<td>D3499</td>
+<td></td>
+<td>D3549</td>
+<td></td>
+<td>原点1</td>
+<td>D3599</td>
+<td></td>
+<td></td>
+<td>D3649</td>
+<td></td>
+<td>D3699</td>
+<td></td>
+<td>D3749</td>
+<td></td>
+<td>D3799</td>
+<td></td>
+<td></td>
+<td>D3849</td>
+<td></td>
+<td>D3899</td>
+<td></td>
+<td>D3949</td>
+<td></td>
+<td>D3999</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": [], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
