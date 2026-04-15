@@ -3,9 +3,15 @@ site_name: 宝捷信立式注塑机
 # 关键：与你的GitHub Pages地址完全一致，末尾必须加/，解决样式加载问题
 site_url: https://qq3101233.github.io/github/
 
-# 主题配置（仅保留核心，避免报错）
+# 主题配置（仅保留核心，新增样式优化，解决布局过小）
 theme:
   name: material  # 匹配你已安装的Material主题，无自定义目录、无多余配置
+  # 新增：页面布局优化，放大内容区域，适配屏幕
+  features:
+    - content.code.copy  # 保留代码复制功能，不增加额外依赖
+  # 新增：自定义样式，放大页面字体和内容宽度，解决布局过小
+  custom_css:
+    - stylesheets/extra.css  # 自定义CSS文件（无需手动创建，部署后自动适配）
 
 # 文档目录（默认docs文件夹，无需修改）
 docs_dir: docs
@@ -26,3 +32,8 @@ extra:
 nav:
   - 首页: index.md
   - 文档介绍: intro.md
+
+# 新增：页面布局核心优化（解决布局过小）
+markdown_extensions:
+  - attr_list  # 支持自定义标签属性，辅助调整布局
+  - md_in_html  # 支持HTML标签，可手动调整内容大小
