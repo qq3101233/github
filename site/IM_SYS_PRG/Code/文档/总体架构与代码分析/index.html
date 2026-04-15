@@ -1,0 +1,2073 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83%E4%B8%8E%E6%B3%A8%E9%87%8A%E7%BA%A6%E5%AE%9A/">
+      
+      
+        <link rel="next" href="../../../../%E4%BC%9A%E8%AE%AE%E8%AE%B0%E5%BD%95/20260318%E5%BC%80%E5%90%88%E6%A8%A1%E5%8A%9F%E8%83%BD%E5%9D%97%E5%8F%82%E6%95%B0%E8%AE%BE%E8%AE%A1%E4%B8%8E%E4%B8%AD%E5%AD%90%E8%BF%9B%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0%E8%AE%A8%E8%AE%BA/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>总体架构与代码分析 - My Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="My Docs" class="md-header__button md-logo" aria-label="My Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            My Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              总体架构与代码分析
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="My Docs" class="md-nav__button md-logo" aria-label="My Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    My Docs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    宝捷信立式注塑机
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../01_%E5%BC%80%E5%90%88%E6%A8%A1%E5%8A%9F%E8%83%BD%E6%95%B4%E7%90%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    注塑机开合模功能
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../02_%E8%B0%83%E6%A8%A1%E5%8A%9F%E8%83%BD%E6%95%B4%E7%90%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    注塑机调模功能整理文档
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../03_%E5%B0%84%E5%87%BA%E5%8A%9F%E8%83%BD%E6%95%B4%E7%90%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    注塑机射出功能
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../04_%E5%90%B9%E6%B0%94%E5%8A%9F%E8%83%BD%E6%95%B4%E7%90%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    注塑机吹气功能
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../05_%E5%82%A8%E6%96%99%E6%B8%85%E6%96%99%E5%8A%9F%E8%83%BD%E6%95%B4%E7%90%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    注塑机储料/清料功能
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../06_%E5%BA%A7%E5%8F%B0%E5%8A%9F%E8%83%BD%E6%95%B4%E7%90%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    注塑机座台功能技术文档
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../07_%E6%89%98%E6%A8%A1%E5%8A%9F%E8%83%BD%E6%95%B4%E7%90%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    注塑机托模功能技术文档
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../08_%E7%A7%BB%E6%A8%A1%E5%8A%9F%E8%83%BD%E6%95%B4%E7%90%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    移模功能整理文档
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../09_%E8%BD%AC%E7%9B%98%E5%8A%9F%E8%83%BD%E6%95%B4%E7%90%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    转盘功能整理文档
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../10_%E4%B8%AD%E5%AD%90%E5%8A%9F%E8%83%BD%E6%95%B4%E7%90%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    注塑机中子功能技术文档
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../11_%E7%BB%9E%E7%89%99%E5%8A%9F%E8%83%BD%E6%95%B4%E7%90%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    注塑机绞牙功能技术文档
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../12_%E8%AE%A1%E6%97%B6%E8%AE%A1%E6%95%B0%E5%8A%9F%E8%83%BD%E6%95%B4%E7%90%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    注塑机计时/计数功能整理文档
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../13_%E6%B8%A9%E5%BA%A6%E5%8A%9F%E8%83%BD%E6%95%B4%E7%90%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    注塑机温度功能
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../14_%E8%87%AA%E5%8A%A8%E6%B5%81%E7%A8%8B%E5%8A%9F%E8%83%BD%E6%95%B4%E7%90%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    注塑机自动流程功能整理文档
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../15_%E6%B5%81%E7%A8%8B%E5%9B%BE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    15 流程图
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../%E5%8A%A8%E4%BD%9C%E6%8F%90%E7%A4%BA%E5%88%97%E8%A1%A8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    注塑机动作提示列表
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    注塑机控制系统命名规范
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../%E5%9C%B0%E5%9D%80%E7%82%B9%E8%A1%A8_D0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    地址点表 - D0
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../%E5%9C%B0%E5%9D%80%E7%82%B9%E8%A1%A8_D1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    地址点表 - D1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../%E5%9C%B0%E5%9D%80%E7%82%B9%E8%A1%A8_D2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    地址点表 - D2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../%E5%9C%B0%E5%9D%80%E7%82%B9%E8%A1%A8_D3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    地址点表 - D3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../%E5%9C%B0%E5%9D%80%E7%82%B9%E8%A1%A8_MD/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    地址点表 - MD
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../%E5%9C%B0%E5%9D%80%E7%82%B9%E8%A1%A8_Sheet1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    地址点表 - Sheet1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_25" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_25" id="__nav_25_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IM SYS PRG
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_25_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_25">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    IM SYS PRG
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_25_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_25_1" id="__nav_25_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Code
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_25_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_25_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Code
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_25_1_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_25_1_1" id="__nav_25_1_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    文档
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_25_1_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_25_1_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    文档
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E4%BF%AE%E6%94%B9%E8%AE%B0%E5%BD%95/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    修改记录
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83%E4%B8%8E%E6%B3%A8%E9%87%8A%E7%BA%A6%E5%AE%9A/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    开发规范与注释约定
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    总体架构与代码分析
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    总体架构与代码分析
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        文档维护规则
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        当前统一架构
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="当前统一架构">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        顶层执行链
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        代码树状结构
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        主控内部分层
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        全局边界
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        模块职责分析
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="模块职责分析">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hmi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        HMI 系统
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        主程序入口
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        模式管理
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        伺服系统
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        合模系统
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        注射系统
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        顶出系统
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        温度系统
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        本次统一后的关键结论
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="本次统一后的关键结论">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        完整性
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        可执行性
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        架构风险
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        后续维护建议
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_26" >
+        
+          
+          <label class="md-nav__link" for="__nav_26" id="__nav_26_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    会议记录
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_26_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_26">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    会议记录
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../%E4%BC%9A%E8%AE%AE%E8%AE%B0%E5%BD%95/20260318%E5%BC%80%E5%90%88%E6%A8%A1%E5%8A%9F%E8%83%BD%E5%9D%97%E5%8F%82%E6%95%B0%E8%AE%BE%E8%AE%A1%E4%B8%8E%E4%B8%AD%E5%AD%90%E8%BF%9B%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0%E8%AE%A8%E8%AE%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    会议记录：开合模功能块参数设计与中子进功能实现讨论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../%E4%BC%9A%E8%AE%AE%E8%AE%B0%E5%BD%95/20260327%E5%B0%84%E5%87%BA%E5%8A%9F%E8%83%BD%E5%9D%97%E5%8F%82%E6%95%B0%E8%AE%A8%E8%AE%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    会议记录：托模/射出功能块参数讨论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../%E4%BC%9A%E8%AE%AE%E8%AE%B0%E5%BD%95/20260410%E6%B3%A8%E5%A1%91%E6%9C%BA%E6%B6%B2%E5%8E%8B%E8%BF%90%E5%8A%A8%E6%8E%A7%E5%88%B6%E5%8A%9F%E8%83%BD%E5%BA%93%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF%E6%96%B9%E6%A1%88%E8%AE%A8%E8%AE%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    会议记录：注塑机液压运动控制功能库开发技术方案讨论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../%E4%BC%9A%E8%AE%AE%E8%AE%B0%E5%BD%95/20260413%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E8%AE%A1%E5%88%92%E4%B8%8E%E6%8E%A5%E5%8F%A3%E9%AA%8C%E8%AF%81%E6%96%B9%E6%B3%95%E8%AE%A8%E8%AE%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    会议记录：项目开发计划与接口验证方法讨论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        文档维护规则
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        当前统一架构
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="当前统一架构">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        顶层执行链
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        代码树状结构
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        主控内部分层
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        全局边界
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        模块职责分析
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="模块职责分析">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hmi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        HMI 系统
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        主程序入口
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        模式管理
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        伺服系统
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        合模系统
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        注射系统
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        顶出系统
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        温度系统
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        本次统一后的关键结论
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="本次统一后的关键结论">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        完整性
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        可执行性
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        架构风险
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        后续维护建议
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="_1">总体架构与代码分析</h1>
+<h2 id="_2">文档维护规则</h2>
+<p>自 <code>2026-04-13</code> 起，本文件与 <code>开发规范与注释约定.md</code>、<code>修改记录.md</code> 必须同步维护。凡是模块职责、主入口、接口边界、状态机流程发生变化，本文件都要同步更新。</p>
+<h2 id="_3">当前统一架构</h2>
+<h3 id="_4">顶层执行链</h3>
+<p><code>PRG_MainControl</code></p>
+<ol>
+<li>先调用 <code>gvl_fbHMIParaInterface</code>，处理在线参数与 HMI 编辑缓冲区的同步。</li>
+<li>再调用 <code>gvl_fbMachineController</code>，统一完成模式判定、自动流程调度、子模块执行和状态汇总。</li>
+</ol>
+<h3 id="_5">代码树状结构</h3>
+<pre><code class="language-text">Code
+├─ HMI系统
+│  └─ FB_HMIParaInterface.st
+├─ 主程序入口
+│  ├─ PRG_MainControl.st
+│  ├─ PRG_MachineController.st
+│  ├─ FB_MachineController.st
+│  └─ MachineControlTypes.st
+├─ 全局变量
+│  └─ GlobalVars.st
+├─ 实例管理
+│  └─ Instances.st
+├─ 模式管理
+│  ├─ 手动模式
+│  │  ├─ PRG_ManualMode.st
+│  │  └─ FB_ManualMode.st
+│  ├─ 调模模式
+│  │  ├─ PRG_MoldAdjustMode.st
+│  │  └─ FB_MoldAdjustMode.st
+│  └─ 自动模式
+│     ├─ PRG_AutoCycle.st
+│     ├─ FB_AutoCycle.st
+│     └─ AutoCycleTypes.st
+├─ 伺服系统
+│  └─ 液压轴
+│     ├─ AxisTypes.st
+│     └─ FB_HydAxis.st
+├─ 合模系统
+│  ├─ 锁模
+│  │  ├─ ClampTypes.st
+│  │  └─ FB_Clamp.st
+│  └─ 调模
+│     ├─ MoldAdjustTypes.st
+│     └─ FB_MoldAdjust.st
+├─ 注射系统
+│  ├─ 座台
+│  │  ├─ NozzleTypes.st
+│  │  └─ FB_Nozzle.st
+│  ├─ 射胶
+│  │  ├─ InjectTypes.st
+│  │  └─ FB_Inject.st
+│  └─ 储料
+│     ├─ MeterTypes.st
+│     └─ FB_Meter.st
+├─ 顶出系统
+│  ├─ 托模
+│  │  ├─ EjectTypes.st
+│  │  ├─ FB_Eject.st
+│  │  └─ FB_EjectMode.st
+│  └─ 中子
+│     ├─ CoreTypes.st
+│     └─ FB_Core.st
+├─ 温度系统
+│  └─ EK312
+│     ├─ EK312Types.st
+│     └─ FB_EK312.st
+├─ 通用类型
+│  └─ CommonTypes.st
+└─ 文档
+   ├─ 开发规范与注释约定.md
+   ├─ 总体架构与代码分析.md
+   └─ 修改记录.md
+</code></pre>
+<h3 id="_6">主控内部分层</h3>
+<p><code>FB_MachineController</code></p>
+<ol>
+<li>读取 <code>ST_MachineCommand</code>、<code>ST_MachinePara</code>、<code>ST_MachineSensor</code>。</li>
+<li>内部调用：
+   <code>FB_ManualMode</code>、<code>FB_MoldAdjustMode</code>、<code>FB_AutoCycle</code>、<code>FB_Clamp</code>、<code>FB_MoldAdjust</code>、
+   <code>FB_Nozzle</code>、<code>FB_Inject</code>、<code>FB_Meter</code>、<code>FB_Eject</code>、<code>FB_EjectMode</code>、<code>FB_Core</code>、<code>FB_EK312</code>。</li>
+<li>对执行模块写入的轴结构，再调用 8 个 <code>FB_HydAxis</code> 实例完成轴实例化、限幅和轴层诊断。</li>
+<li>汇总形成 <code>ST_MachineStatus</code>、各轴命令和温控输出。</li>
+</ol>
+<h3 id="_7">全局边界</h3>
+<ol>
+<li><code>GlobalVars.st</code> 只保留在线运行必需的共享结构。</li>
+<li><code>Instances.st</code> 只保留 <code>gvl_fbHMIParaInterface</code> 和 <code>gvl_fbMachineController</code> 两个顶层实例。</li>
+<li>旧版手动/自动中间缓存已经移除，避免旧架构与新架构同时生效。</li>
+<li>当前工程中的全局共享对象前缀已统一收口为 <code>gvl_</code>。</li>
+</ol>
+<h2 id="_8">模块职责分析</h2>
+<h3 id="hmi">HMI 系统</h3>
+<p>文件：<code>Code/HMI系统/FB_HMIParaInterface.st</code></p>
+<p>职责：</p>
+<ol>
+<li>管理在线参数与 HMI 编辑缓冲区之间的读回、下发和脏标记。</li>
+<li>在机器忙碌时阻止 HMI 直接下发在线工艺参数。</li>
+<li>为 HMI 提供统一状态反馈。</li>
+</ol>
+<h3 id="_9">主程序入口</h3>
+<p>文件：<code>Code/主程序入口/*.st</code></p>
+<p>职责：</p>
+<ol>
+<li><code>PRG_MainControl</code> 是唯一有效主入口。</li>
+<li><code>MachineControlTypes.st</code> 定义机器级统一接口。</li>
+<li><code>FB_MachineController.st</code> 是整机唯一主控编排器。</li>
+</ol>
+<h3 id="_10">模式管理</h3>
+<p>文件：<code>Code/模式管理/*</code></p>
+<p>职责：</p>
+<ol>
+<li><code>FB_ManualMode</code>：把机器手动命令路由到各执行模块。</li>
+<li><code>FB_MoldAdjustMode</code>：把调模模式下允许的动作收口，并强制锁模进入调试方向。</li>
+<li><code>FB_AutoCycle</code>：只做自动流程步骤调度，不直接驱动轴。</li>
+<li><code>PRG_*</code> 文件现为兼容占位，不再承担实际执行。</li>
+</ol>
+<h3 id="_11">伺服系统</h3>
+<p>文件：<code>Code/伺服系统/液压轴/*</code></p>
+<p>职责：</p>
+<ol>
+<li><code>FB_HydAxis</code>：对模块写入的 <code>ST_AxisRefHyd</code> 做最终轴实例化。</li>
+<li>统一完成轴号绑定、能力上限回写、命令限幅和轴层报警叠加。</li>
+<li>当前已在 <code>FB_MachineController</code> 内实例化 8 个轴：
+   合模、调模、座台、射胶、储料、托模基础、托模模式、中子。</li>
+</ol>
+<h3 id="_12">合模系统</h3>
+<p>文件：<code>Code/合模系统/*</code></p>
+<p>职责：</p>
+<ol>
+<li><code>FB_Clamp</code>：处理开模、合模、低压、高压、调试等动作。</li>
+<li><code>FB_MoldAdjust</code>：处理模厚调节进退动作。</li>
+<li>对应 <code>*Types.st</code> 文件维护参数结构与状态枚举。</li>
+</ol>
+<h3 id="_13">注射系统</h3>
+<p>文件：<code>Code/注射系统/*</code></p>
+<p>职责：</p>
+<ol>
+<li><code>FB_Nozzle</code>：座台进退控制。</li>
+<li><code>FB_Inject</code>：射出、保压、射退控制。</li>
+<li><code>FB_Meter</code>：储料动作控制。</li>
+<li>以上 3 个执行块已在 <code>2026-04-14</code> 补齐局部变量语义和状态机段落注释，后续修改时应保持同等注释粒度。</li>
+</ol>
+<h3 id="_14">顶出系统</h3>
+<p>文件：<code>Code/顶出系统/*</code></p>
+<p>职责：</p>
+<ol>
+<li><code>FB_Eject</code>：基础托模进、保压、退动作。</li>
+<li><code>FB_EjectMode</code>：定次、震动、停留等组合托模模式。</li>
+<li><code>FB_Core</code>：中子进退动作。</li>
+<li><code>FB_EjectMode</code> 通过内部 <code>FB_Eject</code> 实例组合更高层托模动作，对外仍透传基础托模块的 Busy/Done/Alarm 与命令输出。</li>
+<li>以上 3 个执行块已在 <code>2026-04-14</code> 补齐局部变量语义和状态机段落注释，后续修改时应保持同等注释粒度。</li>
+</ol>
+<h3 id="_15">温度系统</h3>
+<p>文件：<code>Code/温度系统/EK312/*</code></p>
+<p>职责：</p>
+<ol>
+<li><code>FB_EK312</code>：12 路温控的仿真/控制接口。</li>
+<li>输出温控完成、报警和每路状态。</li>
+</ol>
+<h2 id="_16">本次统一后的关键结论</h2>
+<h3 id="_17">完整性</h3>
+<ol>
+<li>类型定义、功能块定义和引用关系已做静态核对，当前 <code>Code</code> 目录内没有发现缺失的自定义类型或功能块引用。</li>
+<li>顶层架构已统一为“单入口 + 单主控”。</li>
+<li>新增了独立轴功能块层，执行模块与最终轴实例化已经解耦。</li>
+<li>旧版多入口残留逻辑已收敛为兼容占位，避免重复驱动。</li>
+<li>全局变量、全局实例命名已统一为 <code>gvl_</code> 前缀，顶层边界命名更明确。</li>
+</ol>
+<h3 id="_18">可执行性</h3>
+<ol>
+<li>已修复三处明确的 ST 语法问题：<code>FB_Clamp.st</code>、<code>FB_MachineController.st</code>、<code>FB_EK312.st</code> 中的 <code>END_FOR</code> 已补齐分号。</li>
+<li><code>PRG_MainControl</code> 现在已包含 HMI 同步和机器主控调用，单独绑定即可形成完整执行链。</li>
+<li><code>FB_Clamp</code>、<code>FB_MoldAdjust</code>、<code>FB_Nozzle</code>、<code>FB_Inject</code>、<code>FB_Meter</code>、<code>FB_Eject</code>、<code>FB_EjectMode</code>、<code>FB_Core</code> 使用到的轴，已经由 <code>FB_MachineController</code> 内部完成实例化。</li>
+<li><code>FB_AutoCycle.st</code> 已补回本地 <code>VAR</code> 状态缓存声明，自动流程块恢复完整的功能块声明结构。</li>
+<li><code>FB_EK312.st</code> 在停机态和空闲态会主动清零加热输出，温控块的安全收口更明确。</li>
+<li>主干 <code>.st</code> 文件已统一整理为 <code>UTF-8 with BOM</code>，文件头、接口注释和类型注释的显示一致性已收口。</li>
+<li>由于当前工作区不包含 PLC 工程任务配置文件，也没有实际 ST 编译器，本项目尚未做编译级验证；任务绑定仍需在工程环境中确认。</li>
+<li><code>FB_Clamp</code>、<code>FB_MoldAdjust</code>、<code>FB_Nozzle</code>、<code>FB_Inject</code>、<code>FB_Meter</code>、<code>FB_Eject</code>、<code>FB_EjectMode</code>、<code>FB_Core</code> 已补齐局部变量定义说明、公共分支意图和状态机分段注释，便于后续按状态排查动作异常。</li>
+</ol>
+<h3 id="_19">架构风险</h3>
+<ol>
+<li>如果 PLC 工程里仍把旧版 <code>PRG_MachineController</code>、<code>PRG_ManualMode</code>、<code>PRG_MoldAdjustMode</code>、<code>PRG_AutoCycle</code> 绑定到任务，会与新架构说明冲突。</li>
+<li>本次已把这些程序改为兼容占位，但工程层仍应检查任务映射，确保只运行 <code>PRG_MainControl</code>。</li>
+</ol>
+<h2 id="_20">后续维护建议</h2>
+<ol>
+<li>新增模块时，先扩展 <code>MachineControlTypes.st</code> 和 <code>GlobalVars.st</code> 的统一边界，再扩展 <code>FB_MachineController</code>。</li>
+<li>修改任何状态机时，必须同步更新本文件中的职责说明和执行链描述。</li>
+<li>若后续接入真实 PLC 工程文件，建议补一份“任务配置与下载说明”文档，并在本文件追加编译验证记录。</li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": [], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
