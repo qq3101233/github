@@ -1,16 +1,28 @@
+# 网站基础配置（必选，无多余项）
 site_name: 宝捷信立式注塑机
+# 关键：与你的GitHub Pages地址完全一致，末尾必须加/，解决样式加载问题
 site_url: https://qq3101233.github.io/github/
+
+# 主题配置（仅保留核心，避免报错）
 theme:
-  name: material
-  #language: zh-CN
-  features:
-    - navigation.tabs
-    - navigation.sections
-    - navigation.top
-    - search.suggest
-    - search.highlight
-    - content.code.copy
+  name: material  # 匹配你已安装的Material主题，无自定义目录、无多余配置
+
+# 文档目录（默认docs文件夹，无需修改）
 docs_dir: docs
+
+# 插件配置（仅保留核心搜索插件，剔除易出错的mermaid2，避免依赖缺失）
 plugins:
-  - search
-  - mermaid2
+  - search  # 基础搜索功能，必选且无依赖
+
+# 额外优化（可选，不影响部署，提升体验）
+extra:
+  version:
+    provider: mike  # 版本控制（无需额外安装，默认支持）
+  analytics:
+    provider: google
+    property: G-MEASUREMENT_ID  # 可删除，不影响部署
+
+# 导航配置（可选，无导航也能正常部署，后续可自行添加）
+nav:
+  - 首页: index.md
+  - 文档介绍: intro.md
